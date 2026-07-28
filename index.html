@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Debnil Dey — AI Engineer / Agentic Systems</title>
+<meta name="description" content="Debnil Dey — AI engineer building multi-agent systems, real-time ML infrastructure, and autonomous tooling.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --void:#0A0D12;
+    --panel:#12161F;
+    --panel-hi:#171D29;
+    --line:#232A38;
+    --text:#E7EAF0;
+    --muted:#8891A3;
+    --amber:#FF9E2C;
+    --teal:#4FD1C5;
+    --amber-dim: rgba(255,158,44,.16);
+    --teal-dim: rgba(79,209,197,.14);
+    --radius: 12px;
+    --mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+    --display: 'Space Grotesk', system-ui, sans-serif;
+    --body: 'Inter', system-ui, sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:
+      radial-gradient(1200px 600px at 85% -10%, rgba(255,158,44,.06), transparent 60%),
+      radial-gradient(900px 500px at -10% 20%, rgba(79,209,197,.05), transparent 55%),
+      var(--void);
+    color:var(--text);
+    font-family:var(--body);
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{ background:var(--amber-dim); color:var(--text); }
+  a{ color:inherit; }
+  :focus-visible{ outline:2px solid var(--teal); outline-offset:3px; border-radius:4px; }
+  .wrap{ max-width:1120px; margin:0 auto; padding:0 28px; }
+  .eyebrow{
+    font-family:var(--mono); font-size:.72rem; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--muted); display:flex; align-items:center; gap:.5em;
+  }
+  .eyebrow .dot{ width:6px; height:6px; border-radius:50%; background:var(--amber); box-shadow:0 0 6px var(--amber); }
+
+  /* ---------- HEADER / STATUS BAR ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(10,13,18,.82); backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .status-row{
+    display:flex; align-items:center; justify-content:space-between;
+    height:56px; font-family:var(--mono); font-size:.74rem; color:var(--muted);
+  }
+  .brand{ display:flex; align-items:center; gap:.6rem; color:var(--text); font-size:.8rem; letter-spacing:.02em; }
+  .brand .pulse{
+    width:8px; height:8px; border-radius:50%; background:var(--amber);
+    animation:blink 1.8s ease-in-out infinite;
+    box-shadow:0 0 8px var(--amber);
+  }
+  @keyframes blink{ 0%,100%{opacity:1;} 50%{opacity:.35;} }
+  nav{ display:flex; gap:1.6rem; }
+  nav a{ text-decoration:none; color:var(--muted); letter-spacing:.06em; transition:color .2s; }
+  nav a:hover{ color:var(--teal); }
+  .sys-meta{ display:flex; gap:1.4rem; align-items:center; }
+  .sys-meta span{ white-space:nowrap; }
+  .sys-meta .sep{ color:var(--line); }
+  @media (max-width:760px){ .sys-meta{ display:none; } }
+
+  section{ padding:96px 0; border-bottom:1px solid var(--line); }
+  section:last-of-type{ border-bottom:none; }
+
+  /* ---------- HERO ---------- */
+  .hero{ padding-top:84px; padding-bottom:72px; }
+  .hero h1{
+    font-family:var(--display); font-weight:700;
+    font-size:clamp(2.6rem, 7vw, 5.2rem);
+    line-height:.98; letter-spacing:-.02em; margin:.5rem 0 1.1rem;
+  }
+  .hero .lede{
+    max-width:640px; font-size:1.08rem; color:#C4CADA; margin:0 0 2rem;
+  }
+  .hero .lede b{ color:var(--text); font-weight:600; }
+  .btn-row{ display:flex; gap:.9rem; flex-wrap:wrap; margin-bottom:4rem; }
+  .btn{
+    font-family:var(--mono); font-size:.78rem; letter-spacing:.04em; text-decoration:none;
+    padding:.85rem 1.3rem; border-radius:8px; display:inline-flex; align-items:center; gap:.5rem;
+    transition:transform .15s ease, border-color .2s, background .2s;
+    border:1px solid var(--line);
+  }
+  .btn:hover{ transform:translateY(-2px); }
+  .btn-solid{ background:var(--amber); color:#1A1200; border-color:var(--amber); font-weight:600;}
+  .btn-solid:hover{ background:#ffb04f; }
+  .btn-ghost{ color:var(--text); background:var(--panel); }
+  .btn-ghost:hover{ border-color:var(--teal); color:var(--teal); }
+
+  /* Signature pipeline element */
+  .pipeline-shell{
+    border:1px solid var(--line); background:var(--panel); border-radius:var(--radius);
+    padding:1.6rem 1.4rem 1.3rem;
+  }
+  .pipeline-shell .cap{
+    font-family:var(--mono); font-size:.68rem; color:var(--muted); letter-spacing:.12em; text-transform:uppercase;
+    margin-bottom:1.3rem; display:flex; justify-content:space-between;
+  }
+  .pipeline-row{
+    display:flex; align-items:center;
+    overflow-x:auto; padding-bottom:6px; scrollbar-width:none;
+  }
+  .pipeline-row::-webkit-scrollbar{ display:none; }
+  .node{ flex:0 0 auto; display:flex; flex-direction:column; align-items:center; width:120px; }
+  .node .core{
+    width:56px; height:56px; border-radius:50%; background:var(--void);
+    border:2px solid var(--line); display:flex; align-items:center; justify-content:center;
+    font-family:var(--mono); font-size:.7rem; color:var(--muted);
+    animation:nodeGlow 4s ease-in-out infinite; transition:border-color .2s;
+  }
+  .node:nth-child(1) .core{ animation-delay:0s; }
+  .node:nth-child(3) .core{ animation-delay:1s; }
+  .node:nth-child(5) .core{ animation-delay:2s; }
+  .node:nth-child(7) .core{ animation-delay:3s; }
+  @keyframes nodeGlow{
+    0%, 12%, 100%{ border-color:var(--line); box-shadow:none; color:var(--muted); }
+    2%, 8%{ border-color:var(--amber); box-shadow:0 0 14px 1px rgba(255,158,44,.55); color:var(--amber); }
+  }
+  .node .label{ font-family:var(--display); font-weight:600; font-size:.86rem; margin-top:.7rem; letter-spacing:.01em; }
+  .node .verb{ font-family:var(--mono); font-size:.66rem; color:var(--muted); margin-top:.2rem; text-align:center; }
+  .connector{ flex:0 0 auto; width:64px; height:2px; background:var(--line); position:relative; margin-top:-28px; overflow:visible; }
+  .connector::after{
+    content:''; position:absolute; top:-3px; left:0; width:8px; height:8px; border-radius:50%;
+    background:var(--teal); box-shadow:0 0 8px var(--teal);
+    animation:travel 4s linear infinite;
+  }
+  .connector.c1::after{ animation-delay:0s; }
+  .connector.c2::after{ animation-delay:1s; }
+  .connector.c3::after{ animation-delay:2s; }
+  @keyframes travel{
+    0%{ left:-4px; opacity:0; } 4%{ opacity:1; } 22%{ left:calc(100% - 4px); opacity:1; } 26%{ opacity:0; } 100%{ opacity:0; left:calc(100% - 4px);}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .node .core, .connector::after, .brand .pulse{ animation:none !important; }
+  }
+  @media (max-width:640px){ .node{ width:96px; } .connector{ width:34px; } }
+
+  /* ---------- SECTION HEADERS ---------- */
+  .sec-head{ margin-bottom:2.6rem; }
+  .sec-head .num{ font-family:var(--mono); color:var(--amber); font-size:.78rem; letter-spacing:.1em; }
+  .sec-head h2{
+    font-family:var(--display); font-size:clamp(1.7rem,3.4vw,2.4rem); font-weight:600;
+    margin:.4rem 0 .6rem; letter-spacing:-.01em;
+  }
+  .sec-head p{ color:var(--muted); max-width:560px; margin:0; }
+
+  /* ---------- ABOUT / terminal ---------- */
+  .about-grid{ display:grid; grid-template-columns:1.05fr .95fr; gap:2.6rem; align-items:start; }
+  @media (max-width:860px){ .about-grid{ grid-template-columns:1fr; } }
+  .terminal{
+    background:var(--panel); border:1px solid var(--line); border-radius:var(--radius);
+    font-family:var(--mono); font-size:.84rem; overflow:hidden;
+  }
+  .terminal .bar{ display:flex; gap:6px; padding:.7rem .9rem; border-bottom:1px solid var(--line); }
+  .terminal .bar span{ width:10px; height:10px; border-radius:50%; background:var(--line); }
+  .terminal .body{ padding:1.1rem 1.2rem 1.4rem; }
+  .terminal .ln{ margin:0 0 .55rem; }
+  .terminal .p{ color:var(--teal); }
+  .terminal .out{ color:var(--muted); padding-left:1.1rem; }
+  .terminal .out b{ color:var(--text); font-weight:600; }
+  .about-copy p{ color:#C4CADA; margin:0 0 1.1rem; }
+  .about-copy .tags{ display:flex; flex-wrap:wrap; gap:.5rem; margin-top:1.3rem; }
+  .tag{
+    font-family:var(--mono); font-size:.7rem; color:var(--muted); border:1px solid var(--line);
+    padding:.35rem .65rem; border-radius:6px; background:var(--panel);
+  }
+
+  /* ---------- AGENTS / PROJECTS ---------- */
+  .agents-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:1.2rem; }
+  @media (max-width:940px){ .agents-grid{ grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:620px){ .agents-grid{ grid-template-columns:1fr; } }
+
+  .card{
+    background:var(--panel); border:1px solid var(--line); border-radius:var(--radius);
+    padding:1.5rem; display:flex; flex-direction:column; transition:border-color .2s, transform .2s;
+  }
+  .card:hover{ border-color:#2E3648; transform:translateY(-3px); }
+  .card-top{ display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:.7rem; gap:.6rem;}
+  .card h3{ font-family:var(--display); font-size:1.15rem; font-weight:600; margin:0; }
+  .pill{
+    font-family:var(--mono); font-size:.62rem; letter-spacing:.08em; padding:.3rem .55rem;
+    border-radius:20px; white-space:nowrap; text-transform:uppercase; border:1px solid transparent;
+  }
+  .pill-live{ background:var(--amber-dim); color:var(--amber); border-color:rgba(255,158,44,.35); }
+  .pill-active{ background:var(--teal-dim); color:var(--teal); border-color:rgba(79,209,197,.3); }
+  .pill-wip{ background:var(--panel-hi); color:var(--muted); border-color:var(--line); }
+  .card p.desc{ color:#B7BECF; font-size:.9rem; margin:0 0 1rem; flex-grow:1; }
+  .stack{ display:flex; flex-wrap:wrap; gap:.4rem; margin-bottom:1rem; }
+  .stack span{ font-family:var(--mono); font-size:.66rem; color:var(--muted); background:var(--void); border:1px solid var(--line); padding:.22rem .5rem; border-radius:5px; }
+  .card-links{ display:flex; gap:1.1rem; font-family:var(--mono); font-size:.76rem; margin-top:auto; }
+  .card-links a{ text-decoration:none; color:var(--teal); transition:opacity .2s; }
+  .card-links a:hover{ opacity:.7; }
+
+  /* Featured Aegis card */
+  .featured{
+    grid-column:1/-1; background:linear-gradient(160deg, var(--panel), var(--panel-hi));
+    border:1px solid #2A3345; padding:2rem;
+  }
+  .featured-top{ display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:1rem; margin-bottom:1.4rem; }
+  .featured h3{ font-family:var(--display); font-size:1.7rem; font-weight:700; margin:.2rem 0; }
+  .featured .sub{ color:var(--muted); font-size:.85rem; font-family:var(--mono); }
+  .featured p.desc{ max-width:640px; color:#C4CADA; font-size:.96rem; margin-bottom:1.6rem; }
+  .stage-flow{ display:flex; align-items:stretch; gap:.5rem; flex-wrap:wrap; margin-bottom:1.6rem; }
+  .stage{
+    flex:1 1 130px; background:var(--void); border:1px solid var(--line); border-radius:9px;
+    padding:.85rem .9rem; position:relative;
+  }
+  .stage .k{ font-family:var(--mono); font-size:.62rem; color:var(--amber); letter-spacing:.1em; }
+  .stage .n{ font-family:var(--display); font-weight:600; font-size:.98rem; margin:.3rem 0 .25rem; }
+  .stage .d{ font-family:var(--mono); font-size:.72rem; color:var(--muted); }
+  .stage-arrow{ align-self:center; color:var(--line); font-family:var(--mono); font-size:1.1rem; }
+  @media (max-width:760px){ .stage-arrow{ display:none; } }
+
+  /* Also in the lab strip */
+  .lab-strip{ margin-top:1.6rem; border-top:1px dashed var(--line); padding-top:1.4rem; }
+  .lab-strip .cap{ font-family:var(--mono); font-size:.7rem; color:var(--muted); letter-spacing:.1em; text-transform:uppercase; margin-bottom:.9rem; }
+  .lab-list{ display:flex; flex-wrap:wrap; gap:.7rem 1.6rem; }
+  .lab-list a{
+    font-family:var(--mono); font-size:.82rem; text-decoration:none; color:var(--text);
+    display:flex; align-items:center; gap:.4rem; border-bottom:1px solid transparent; padding-bottom:2px;
+  }
+  .lab-list a:hover{ color:var(--teal); border-color:var(--teal); }
+  .lab-list .mut{ color:var(--muted); font-size:.78rem; }
+
+  /* ---------- CAPABILITY REGISTRY ---------- */
+  table.registry{ width:100%; border-collapse:collapse; }
+  table.registry tr{ border-bottom:1px solid var(--line); }
+  table.registry tr:first-child{ border-top:1px solid var(--line); }
+  table.registry td{ padding:1.05rem .4rem; vertical-align:top; }
+  table.registry td.k{
+    font-family:var(--mono); font-size:.78rem; color:var(--amber); width:230px; letter-spacing:.03em;
+  }
+  table.registry td.v{ font-family:var(--mono); font-size:.85rem; color:#C4CADA; line-height:1.9; }
+  @media (max-width:700px){
+    table.registry, table.registry tbody, table.registry tr, table.registry td{ display:block; width:auto; }
+    table.registry tr{ padding:1rem 0; }
+    table.registry td.k{ padding-bottom:.3rem; }
+  }
+
+  /* ---------- CONNECT ---------- */
+  .connect-grid{ display:grid; grid-template-columns:1fr 1fr; gap:2.6rem; align-items:center; }
+  @media (max-width:860px){ .connect-grid{ grid-template-columns:1fr; } }
+  .connect-actions{ display:flex; flex-direction:column; gap:.8rem; align-items:flex-start; }
+  .connect-actions .btn{ width:100%; justify-content:center; }
+  .connect-note{ font-family:var(--mono); font-size:.78rem; color:var(--muted); margin-top:1.4rem; line-height:1.9; }
+
+  footer{ padding:2.4rem 0; }
+  footer .wrap{ display:flex; justify-content:space-between; flex-wrap:wrap; gap:.8rem; font-family:var(--mono); font-size:.72rem; color:var(--muted); }
+
+  /* reveal on scroll */
+  .reveal{ opacity:0; transform:translateY(16px); transition:opacity .6s ease, transform .6s ease; }
+  .reveal.in{ opacity:1; transform:none; }
+  @media (prefers-reduced-motion: reduce){ .reveal{ opacity:1; transform:none; transition:none; } }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap status-row">
+    <div class="brand"><span class="pulse"></span>D. DEY // SYSTEM ONLINE</div>
+    <nav>
+      <a href="#about">PROFILE</a>
+      <a href="#agents">AGENTS</a>
+      <a href="#stack">STACK</a>
+      <a href="#connect">CONNECT</a>
+    </nav>
+    <div class="sys-meta">
+      <span id="clock">IST --:--:--</span>
+      <span class="sep">·</span>
+      <span id="uptime">SESSION 00:00:00</span>
+      <span class="sep">·</span>
+      <span>KOLKATA, IN</span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- HERO -->
+  <section class="hero" id="top">
+    <div class="eyebrow"><span class="dot"></span> AI ENGINEER — MULTI-AGENT SYSTEMS &amp; REAL-TIME ML INFRA</div>
+    <h1>DEBNIL<br>DEY</h1>
+    <p class="lede">I build systems that <b>watch, reason, and act on their own</b> — from ML infrastructure that diagnoses and fixes its own incidents, to browsers that track your hands in 3D. B.Tech CSE (AI) student at IEM Kolkata, shipping agentic tools in public.</p>
+    <div class="btn-row">
+      <a href="#agents" class="btn btn-solid">→ VIEW DEPLOYED AGENTS</a>
+      <a href="#connect" class="btn btn-ghost">OPEN CHANNEL</a>
+    </div>
+
+    <div class="pipeline-shell reveal">
+      <div class="cap"><span>HOW I WORK — A LOOP, NOT A LIST</span><span>04 STAGES · LOOPING</span></div>
+      <div class="pipeline-row">
+        <div class="node"><div class="core">01</div><div class="label">Observe</div><div class="verb">read the system</div></div>
+        <div class="connector c1"></div>
+        <div class="node"><div class="core">02</div><div class="label">Reason</div><div class="verb">form a hypothesis</div></div>
+        <div class="connector c2"></div>
+        <div class="node"><div class="core">03</div><div class="label">Build</div><div class="verb">ship the fix</div></div>
+        <div class="connector c3"></div>
+        <div class="node"><div class="core">04</div><div class="label">Ship</div><div class="verb">measure, repeat</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="sec-head reveal">
+      <div class="num">00 / PROFILE</div>
+      <h2>Agent Profile</h2>
+      <p>The short version of who's running this pipeline.</p>
+    </div>
+    <div class="about-grid">
+      <div class="terminal reveal">
+        <div class="bar"><span></span><span></span><span></span></div>
+        <div class="body">
+          <p class="ln"><span class="p">$</span> whoami</p>
+          <p class="ln out">Debnil Dey — B.Tech CSE (AI), <b>IEM Kolkata</b> · 2024–2028</p>
+          <p class="ln"><span class="p">$</span> location</p>
+          <p class="ln out">Kolkata, West Bengal, India</p>
+          <p class="ln"><span class="p">$</span> current_focus</p>
+          <p class="ln out">agentic AI systems · multi-agent orchestration · real-time ML infra</p>
+          <p class="ln"><span class="p">$</span> status</p>
+          <p class="ln out">building in public, one repo at a time</p>
+        </div>
+      </div>
+      <div class="about-copy reveal">
+        <p>I like systems that don't wait to be told what's wrong. Most of what I build follows the same shape: something senses a change in the world — a metric drifting, a hand moving, a transaction landing — and a chain of small, specialized agents decides what to do about it.</p>
+        <p>That's shown up as an SRE pipeline that triages its own ML incidents, an observability platform that catches model drift before it costs you, and tools that turn raw signals — video frames, gestures, bank statements — into something a person can act on immediately.</p>
+        <div class="tags">
+          <span class="tag">Google ADK</span><span class="tag">Gemini</span><span class="tag">PyTorch</span>
+          <span class="tag">FastAPI</span><span class="tag">React / TS</span><span class="tag">CUDA / TensorRT</span>
+          <span class="tag">Reinforcement Learning</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AGENTS / PROJECTS -->
+  <section id="agents">
+    <div class="sec-head reveal">
+      <div class="num">01 / DEPLOYED AGENTS</div>
+      <h2>Things I've shipped</h2>
+      <p>Each one starts from the same question: what should this system notice, and what should it do next?</p>
+    </div>
+
+    <div class="agents-grid">
+
+      <!-- FEATURED: AEGIS -->
+      <div class="card featured reveal">
+        <div class="featured-top">
+          <div>
+            <span class="sub">FLAGSHIP · CAPSTONE PROJECT</span>
+            <h3>Aegis</h3>
+          </div>
+          <span class="pill pill-live">● Live demo</span>
+        </div>
+        <p class="desc">An autonomous multi-agent system for ML infrastructure reliability. When a production model starts failing, a coordinated pipeline of four agents detects, diagnoses, and remediates the incident — then writes it up, with a live failure-injection harness to prove it works.</p>
+        <div class="stage-flow">
+          <div class="stage"><div class="k">AGENT 01</div><div class="n">Sentry</div><div class="d">watches for the incident</div></div>
+          <div class="stage-arrow">→</div>
+          <div class="stage"><div class="k">AGENT 02</div><div class="n">Sleuth</div><div class="d">traces the root cause</div></div>
+          <div class="stage-arrow">→</div>
+          <div class="stage"><div class="k">AGENT 03</div><div class="n">Medic</div><div class="d">applies the remediation</div></div>
+          <div class="stage-arrow">→</div>
+          <div class="stage"><div class="k">AGENT 04</div><div class="n">Scribe</div><div class="d">writes the postmortem</div></div>
+        </div>
+        <div class="stack">
+          <span>Google ADK</span><span>Gemini</span><span>FastAPI</span><span>React / TS</span><span>ChromaDB</span><span>gRPC</span><span>Docker</span>
+        </div>
+        <div class="card-links">
+          <a href="https://aegis-dun-rho.vercel.app" target="_blank" rel="noopener">↗ LIVE DEMO</a>
+          <a href="https://github.com/Debddj/Aegis" target="_blank" rel="noopener">↗ REPOSITORY</a>
+        </div>
+      </div>
+
+      <!-- Sentinel -->
+      <div class="card reveal">
+        <div class="card-top"><h3>Sentinel</h3><span class="pill pill-active">Active</span></div>
+        <p class="desc">A production ML observability platform. Runs PSI, KS, CUSUM and Isolation Forest engines against live traffic to catch data drift, concept drift and prediction anomalies, with async processing and real-time alerting.</p>
+        <div class="stack"><span>Python</span><span>Celery / Redis</span><span>WebSockets</span><span>JWT Auth</span></div>
+        <div class="card-links"><a href="https://github.com/Debddj/Sentinel" target="_blank" rel="noopener">↗ REPOSITORY</a></div>
+      </div>
+
+      <!-- Sanctum -->
+      <div class="card reveal">
+        <div class="card-top"><h3>Sanctum</h3><span class="pill pill-wip">Building</span></div>
+        <p class="desc">A real-time AR VFX engine that turns bare-hand gestures into cinematic visual effects — custom CUDA kernels feeding a TensorRT inference pipeline, rendered live through Three.js.</p>
+        <div class="stack"><span>MediaPipe</span><span>PyTorch</span><span>CUDA</span><span>TensorRT</span><span>Three.js</span></div>
+        <div class="card-links"><a href="https://github.com/Debddj/Sanctum" target="_blank" rel="noopener">↗ REPOSITORY</a></div>
+      </div>
+
+      <!-- Stadium Copilot -->
+      <div class="card reveal">
+        <div class="card-top"><h3>Stadium Copilot</h3><span class="pill pill-live">● Live demo</span></div>
+        <p class="desc">A GenAI operations layer built for FIFA World Cup 2026 — a 12-language grounded fan assistant, real-time crowd intelligence, an accessibility simplifier, and lowest-carbon navigation routing, all on one interactive map.</p>
+        <div class="stack"><span>Gemini</span><span>Maps</span><span>Multilingual RAG</span></div>
+        <div class="card-links">
+          <a href="https://stadium-copilot-ruby.vercel.app" target="_blank" rel="noopener">↗ LIVE DEMO</a>
+          <a href="https://github.com/Debddj/stadium-copilot" target="_blank" rel="noopener">↗ REPO</a>
+        </div>
+      </div>
+
+      <!-- ChronoSpatial Engine -->
+      <div class="card reveal">
+        <div class="card-top"><h3>ChronoSpatial Engine</h3><span class="pill pill-active">Active</span></div>
+        <p class="desc">A real-time telemetry engine that scores risk frame-by-frame over a live video feed, streaming results over WebSockets through a CNN–ANN hybrid model.</p>
+        <div class="stack"><span>FastAPI</span><span>OpenCV</span><span>MobileNetV3</span><span>ONNX</span></div>
+        <div class="card-links"><a href="https://github.com/Debddj/ChronoSpatial-Engine" target="_blank" rel="noopener">↗ REPOSITORY</a></div>
+      </div>
+
+      <!-- Aura Pitch -->
+      <div class="card reveal">
+        <div class="card-top"><h3>Aura Pitch 2026</h3><span class="pill pill-wip">Building</span></div>
+        <p class="desc">Real-time football tactical intelligence powered by multi-agent reinforcement learning — simulated match telemetry streamed through a gRPC pipeline and rendered as live spatial insight on a 3D pitch.</p>
+        <div class="stack"><span>Multi-Agent RL</span><span>FastAPI / gRPC</span><span>Three.js</span></div>
+        <div class="card-links"><a href="https://github.com/Debddj/Aura-Pitch-2026" target="_blank" rel="noopener">↗ REPOSITORY</a></div>
+      </div>
+
+      <!-- EcoTwin -->
+      <div class="card reveal">
+        <div class="card-top"><h3>EcoTwin</h3><span class="pill pill-wip">Hackathon</span></div>
+        <p class="desc">Turns data you already have — a bank statement, a receipt photo — into a living carbon-footprint "twin" that visibly thrives or wilts with your trend, plus a What-If simulator for future decisions.</p>
+        <div class="stack"><span>Next.js 14</span><span>Gemini</span><span>Vercel</span></div>
+        <div class="card-links"><a href="https://github.com/Debddj/EcoTwin" target="_blank" rel="noopener">↗ REPOSITORY</a></div>
+      </div>
+
+      <!-- LiverInsight CDSS -->
+      <div class="card reveal">
+        <div class="card-top"><h3>LiverInsight CDSS</h3><span class="pill pill-active">91% recall</span></div>
+        <p class="desc">A Clinical Decision Support System for liver disease risk — an XGBoost model at 91% recall / 0.92 AUC, made interpretable with SHAP explanations and confidence scores clinicians can actually act on.</p>
+        <div class="stack"><span>XGBoost</span><span>SHAP</span><span>FastAPI</span><span>React 18</span></div>
+        <div class="card-links"><a href="https://github.com/Debddj/LiverInsight-CDSS-Clinical-Decision-Support-System-" target="_blank" rel="noopener">↗ REPOSITORY</a></div>
+      </div>
+
+      <!-- MagnoGlove -->
+      <div class="card reveal">
+        <div class="card-top"><h3>MagnoGlove Pro</h3><span class="pill pill-live">● Live demo</span></div>
+        <p class="desc">Browser-native AR hand tracking with a real electromagnetic-physics simulation — dual-hand, 21-landmark tracking, zero install, running entirely client-side over WebGL.</p>
+        <div class="stack"><span>MediaPipe</span><span>Three.js</span><span>Cannon-es</span><span>WebGL 2.0</span></div>
+        <div class="card-links">
+          <a href="https://debddj.github.io/MagnoGlove-Demo/" target="_blank" rel="noopener">↗ LIVE DEMO</a>
+          <a href="https://github.com/Debddj/MagnoGlove-Demo" target="_blank" rel="noopener">↗ REPO</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="lab-strip reveal">
+      <div class="cap">Also running in the lab</div>
+      <div class="lab-list">
+        <a href="https://github.com/Debddj/agi-mvp-laptop" target="_blank" rel="noopener">→ AGI MVP (Laptop-Built) <span class="mut">— from-scratch tiny transformer + agentic plan/act/critique loop</span></a>
+        <a href="https://github.com/Debddj/devpulse-mcp" target="_blank" rel="noopener">→ DevPulse MCP <span class="mut">— feeds live project metrics to your AI assistant</span></a>
+        <a href="https://github.com/Debddj/project-jarvis" target="_blank" rel="noopener">→ Project J.A.R.V.I.S. <span class="mut">— voice assistant with an Iron-Man HUD</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CAPABILITY REGISTRY -->
+  <section id="stack">
+    <div class="sec-head reveal">
+      <div class="num">02 / CAPABILITY REGISTRY</div>
+      <h2>What's under the hood</h2>
+      <p>The tools each agent above actually runs on.</p>
+    </div>
+    <div class="reveal">
+      <table class="registry">
+        <tr><td class="k">Agentic Systems</td><td class="v">Google ADK · Gemini · LangChain · multi-agent orchestration</td></tr>
+        <tr><td class="k">ML / Deep Learning</td><td class="v">PyTorch · TensorFlow · scikit-learn · XGBoost · Hugging Face</td></tr>
+        <tr><td class="k">Computer Vision</td><td class="v">OpenCV · MediaPipe · CUDA · TensorRT · ONNX</td></tr>
+        <tr><td class="k">Reinforcement Learning</td><td class="v">DQN · Q-Learning · multi-agent RL</td></tr>
+        <tr><td class="k">Backend / Real-time</td><td class="v">FastAPI · WebSockets · gRPC · Docker · Celery / Redis</td></tr>
+        <tr><td class="k">Frontend / Visualization</td><td class="v">React · TypeScript · Three.js · Next.js</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <!-- CONNECT -->
+  <section id="connect">
+    <div class="sec-head reveal">
+      <div class="num">03 / CONNECT</div>
+      <h2>Open a channel</h2>
+      <p>Best reached where the code already lives.</p>
+    </div>
+    <div class="connect-grid reveal">
+      <div class="terminal">
+        <div class="bar"><span></span><span></span><span></span></div>
+        <div class="body">
+          <p class="ln"><span class="p">$</span> connect --with debnil</p>
+          <p class="ln out">github &nbsp;&nbsp;: github.com/Debddj</p>
+          <p class="ln out">linkedin : linkedin.com/in/debnil-dey</p>
+          <p class="ln out">status &nbsp;&nbsp;: open to interesting problems</p>
+        </div>
+      </div>
+      <div class="connect-actions">
+        <a class="btn btn-solid" href="https://github.com/Debddj" target="_blank" rel="noopener">→ GITHUB</a>
+        <a class="btn btn-ghost" href="https://www.linkedin.com/in/debnil-dey-359a25393/" target="_blank" rel="noopener">→ LINKEDIN</a>
+        <p class="connect-note">Currently in progress: a from-scratch agentic LLM (AGI MVP) and a personal J.A.R.V.I.S.-style assistant.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 DEBNIL DEY — BUILT AS ITS OWN SMALL PIPELINE</span>
+    <span>KOLKATA, INDIA</span>
+  </div>
+</footer>
+
+<script>
+  // live IST clock
+  function tick(){
+    const el = document.getElementById('clock');
+    const now = new Date();
+    const ist = new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }));
+    const hh = String(ist.getHours()).padStart(2,'0');
+    const mm = String(ist.getMinutes()).padStart(2,'0');
+    const ss = String(ist.getSeconds()).padStart(2,'0');
+    if(el) el.textContent = `IST ${hh}:${mm}:${ss}`;
+  }
+  setInterval(tick, 1000); tick();
+
+  // session uptime
+  const start = Date.now();
+  function upt(){
+    const el = document.getElementById('uptime');
+    const s = Math.floor((Date.now()-start)/1000);
+    const hh = String(Math.floor(s/3600)).padStart(2,'0');
+    const mm = String(Math.floor((s%3600)/60)).padStart(2,'0');
+    const ss = String(s%60).padStart(2,'0');
+    if(el) el.textContent = `SESSION ${hh}:${mm}:${ss}`;
+  }
+  setInterval(upt, 1000); upt();
+
+  // scroll reveal
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold:.12 });
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+
+</body>
+</html>
