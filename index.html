@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Debnil Dey — AI Engineer / Agentic Systems</title>
-<meta name="description" content="Debnil Dey — AI engineer building multi-agent systems, real-time ML infrastructure, and autonomous tooling.">
+<meta name="description" content="Debnil Dey — AI engineer building multi-agent systems, real-time ML infrastructure, and autonomous tooling with a genuine human touch.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -157,9 +157,112 @@
   }
   .sec-head p{ color:var(--muted); max-width:560px; margin:0; }
 
-  /* ---------- ABOUT / terminal ---------- */
-  .about-grid{ display:grid; grid-template-columns:1.05fr .95fr; gap:2.6rem; align-items:start; }
-  @media (max-width:860px){ .about-grid{ grid-template-columns:1fr; } }
+  /* ---------- ABOUT / PROFILE GRID ---------- */
+  .about-grid{ display:grid; grid-template-columns:0.95fr 1.05fr; gap:2.6rem; align-items:start; }
+  @media (max-width:880px){ .about-grid{ grid-template-columns:1fr; } }
+
+  /* DUAL PHOTO / AVATAR CARD */
+  .profile-card {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    position: relative;
+  }
+  .mode-switch-bar {
+    display: flex;
+    background: var(--void);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 4px;
+    gap: 4px;
+  }
+  .mode-btn {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: var(--muted);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.55rem 0.8rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+  }
+  .mode-btn:hover { color: var(--text); }
+  .mode-btn.active-human {
+    background: var(--amber-dim);
+    color: var(--amber);
+    font-weight: 600;
+    border: 1px solid rgba(255,158,44,0.3);
+  }
+  .mode-btn.active-avatar {
+    background: var(--teal-dim);
+    color: var(--teal);
+    font-weight: 600;
+    border: 1px solid rgba(79,209,197,0.3);
+  }
+  .photo-viewport {
+    position: relative;
+    width: 100%;
+    height: 380px;
+    border-radius: 10px;
+    overflow: hidden;
+    background: var(--void);
+    border: 2px solid var(--line);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  .photo-viewport.human-active {
+    border-color: var(--amber);
+    box-shadow: 0 0 20px rgba(255, 158, 44, 0.22);
+  }
+  .photo-viewport.avatar-active {
+    border-color: var(--teal);
+    box-shadow: 0 0 20px rgba(79, 209, 197, 0.22);
+  }
+  .photo-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 20%;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+  .photo-img.hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(1.03);
+  }
+  .photo-caption {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--muted);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 0.2rem;
+  }
+  .photo-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.68rem;
+    font-family: var(--mono);
+    padding: 0.25rem 0.6rem;
+    border-radius: 20px;
+    background: var(--void);
+    border: 1px solid var(--line);
+  }
+
   .terminal{
     background:var(--panel); border:1px solid var(--line); border-radius:var(--radius);
     font-family:var(--mono); font-size:.84rem; overflow:hidden;
@@ -171,11 +274,32 @@
   .terminal .p{ color:var(--teal); }
   .terminal .out{ color:var(--muted); padding-left:1.1rem; }
   .terminal .out b{ color:var(--text); font-weight:600; }
+
   .about-copy p{ color:#C4CADA; margin:0 0 1.1rem; }
   .about-copy .tags{ display:flex; flex-wrap:wrap; gap:.5rem; margin-top:1.3rem; }
   .tag{
     font-family:var(--mono); font-size:.7rem; color:var(--muted); border:1px solid var(--line);
     padding:.35rem .65rem; border-radius:6px; background:var(--panel);
+  }
+
+  .human-signature-box {
+    margin-top: 1.5rem;
+    padding: 1.1rem 1.3rem;
+    background: rgba(255, 158, 44, 0.05);
+    border-left: 3px solid var(--amber);
+    border-radius: 0 10px 10px 0;
+    font-size: 0.92rem;
+    color: #D6DCED;
+    line-height: 1.65;
+  }
+  .human-signature-box b { color: var(--text); }
+  .human-signature-box .sign {
+    display: block;
+    margin-top: 0.6rem;
+    font-family: var(--mono);
+    font-size: 0.76rem;
+    color: var(--amber);
+    letter-spacing: 0.05em;
   }
 
   /* ---------- AGENTS / PROJECTS ---------- */
@@ -293,12 +417,13 @@
   <section class="hero" id="top">
     <div class="eyebrow"><span class="dot"></span> AI ENGINEER — MULTI-AGENT SYSTEMS &amp; REAL-TIME ML INFRA</div>
     <h1>DEBNIL<br>DEY</h1>
-    <p class="lede">I build systems that <b>watch, reason, and act on their own</b> — from ML infrastructure that diagnoses and fixes its own incidents, to browsers that track your hands in 3D. B.Tech CSE (AI) student at IEM Kolkata, shipping agentic tools in public.</p>
+    <p class="lede">I build systems that <b>watch, reason, and act on their own</b> — from ML infrastructure that diagnoses and fixes its own incidents, to browsers that track your hands in 3D. B.Tech CSE (AI) student at IEM Kolkata, shipping agentic tools with human craft.</p>
     <div class="btn-row">
       <a href="#agents" class="btn btn-solid">→ VIEW DEPLOYED AGENTS</a>
       <a href="#connect" class="btn btn-ghost">OPEN CHANNEL</a>
     </div>
 
+    <!-- Agentic Workflow Diagram (Intact) -->
     <div class="pipeline-shell reveal">
       <div class="cap"><span>HOW I WORK — A LOOP, NOT A LIST</span><span>04 STAGES · LOOPING</span></div>
       <div class="pipeline-row">
@@ -313,36 +438,70 @@
     </div>
   </section>
 
-  <!-- ABOUT -->
+  <!-- ABOUT / PROFILE -->
   <section id="about">
     <div class="sec-head reveal">
       <div class="num">00 / PROFILE</div>
-      <h2>Agent Profile</h2>
-      <p>The short version of who's running this pipeline.</p>
+      <h2>Agent &amp; Human Profile</h2>
+      <p>The engineer behind the pipeline — bridging human intention with autonomous agents.</p>
     </div>
+    
     <div class="about-grid">
-      <div class="terminal reveal">
-        <div class="bar"><span></span><span></span><span></span></div>
-        <div class="body">
-          <p class="ln"><span class="p">$</span> whoami</p>
-          <p class="ln out">Debnil Dey — B.Tech CSE (AI), <b>IEM Kolkata</b> · 2024–2028</p>
-          <p class="ln"><span class="p">$</span> location</p>
-          <p class="ln out">Kolkata, West Bengal, India</p>
-          <p class="ln"><span class="p">$</span> current_focus</p>
-          <p class="ln out">agentic AI systems · multi-agent orchestration · real-time ML infra</p>
-          <p class="ln"><span class="p">$</span> status</p>
-          <p class="ln out">building in public, one repo at a time</p>
+      
+      <!-- DUAL PHOTO / AI AVATAR CARD -->
+      <div class="profile-card reveal">
+        <div class="mode-switch-bar">
+          <button id="btnHuman" class="mode-btn active-human" onclick="switchMode('human')">
+            <span>👤 Physical Human</span>
+          </button>
+          <button id="btnAvatar" class="mode-btn" onclick="switchMode('avatar')">
+            <span>🤖 AI Avatar</span>
+          </button>
+        </div>
+
+        <div id="photoViewport" class="photo-viewport human-active">
+          <img id="imgHuman" src="assets/debnil_original.png" alt="Debnil Dey - Original Photo" class="photo-img">
+          <img id="imgAvatar" src="assets/debnil_avatar.png" alt="Debnil Dey - AI Avatar" class="photo-img hidden">
+        </div>
+
+        <div class="photo-caption">
+          <span id="captionText">⚡ Debnil Dey — Kolkata, India</span>
+          <span class="photo-badge" id="modeBadge">HUMAN IN THE LOOP</span>
+        </div>
+
+        <!-- CLI TERMINAL -->
+        <div class="terminal" style="margin-top:0.4rem;">
+          <div class="bar"><span></span><span></span><span></span></div>
+          <div class="body">
+            <p class="ln"><span class="p">$</span> whoami</p>
+            <p class="ln out">Debnil Dey — B.Tech CSE (AI), <b>IEM Kolkata</b> · 2024–2028</p>
+            <p class="ln"><span class="p">$</span> current_focus</p>
+            <p class="ln out">agentic AI systems · multi-agent orchestration · real-time ML infra</p>
+            <p class="ln"><span class="p">$</span> status</p>
+            <p class="ln out">building in public, one repo at a time</p>
+          </div>
         </div>
       </div>
+
+      <!-- ABOUT COPY & HUMAN TOUCH NOTE -->
       <div class="about-copy reveal">
         <p>I like systems that don't wait to be told what's wrong. Most of what I build follows the same shape: something senses a change in the world — a metric drifting, a hand moving, a transaction landing — and a chain of small, specialized agents decides what to do about it.</p>
         <p>That's shown up as an SRE pipeline that triages its own ML incidents, an observability platform that catches model drift before it costs you, and tools that turn raw signals — video frames, gestures, bank statements — into something a person can act on immediately.</p>
+        
         <div class="tags">
           <span class="tag">Google ADK</span><span class="tag">Gemini</span><span class="tag">PyTorch</span>
           <span class="tag">FastAPI</span><span class="tag">React / TS</span><span class="tag">CUDA / TensorRT</span>
           <span class="tag">Reinforcement Learning</span>
         </div>
+
+        <!-- HUMAN TOUCH PERSONAL NOTE -->
+        <div class="human-signature-box">
+          <b>Behind the Code &amp; Algorithms:</b><br>
+          "AI automates the loop, but human intent, ethics, and craft drive the mission. I build agentic tools not to hide the human element, but to amplify what one engineer in Kolkata can imagine and execute."
+          <span class="sign">— Debnil Dey · Hand-crafted with care in Kolkata ☕</span>
+        </div>
       </div>
+
     </div>
   </section>
 
@@ -513,7 +672,7 @@
 
 <footer>
   <div class="wrap">
-    <span>© 2026 DEBNIL DEY — BUILT AS ITS OWN SMALL PIPELINE</span>
+    <span>© 2026 DEBNIL DEY — BUILT WITH HUMAN CRAFT &amp; AGENTIC PIPELINES</span>
     <span>KOLKATA, INDIA</span>
   </div>
 </footer>
@@ -542,6 +701,37 @@
     if(el) el.textContent = `SESSION ${hh}:${mm}:${ss}`;
   }
   setInterval(upt, 1000); upt();
+
+  // photo mode switcher
+  function switchMode(mode) {
+    const vp = document.getElementById('photoViewport');
+    const imgH = document.getElementById('imgHuman');
+    const imgA = document.getElementById('imgAvatar');
+    const btnH = document.getElementById('btnHuman');
+    const btnA = document.getElementById('btnAvatar');
+    const cap = document.getElementById('captionText');
+    const badge = document.getElementById('modeBadge');
+
+    if(mode === 'human') {
+      imgH.classList.remove('hidden');
+      imgA.classList.add('hidden');
+      vp.className = 'photo-viewport human-active';
+      btnH.className = 'mode-btn active-human';
+      btnA.className = 'mode-btn';
+      cap.textContent = '⚡ Debnil Dey — Kolkata, India';
+      badge.textContent = 'HUMAN IN THE LOOP';
+      badge.style.color = 'var(--amber)';
+    } else {
+      imgH.classList.add('hidden');
+      imgA.classList.remove('hidden');
+      vp.className = 'photo-viewport avatar-active';
+      btnH.className = 'mode-btn';
+      btnA.className = 'mode-btn active-avatar';
+      cap.textContent = '🤖 Debnil Dey — Cyber AI Engine';
+      badge.textContent = 'AUTONOMOUS ENGINE';
+      badge.style.color = 'var(--teal)';
+    }
+  }
 
   // scroll reveal
   const io = new IntersectionObserver((entries)=>{
