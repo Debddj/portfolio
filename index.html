@@ -1,231 +1,574 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Debnil Dey — AI Engineer / Agentic Systems</title>
-<meta name="description" content="Debnil Dey — AI engineer building multi-agent systems, real-time ML infrastructure, and autonomous tooling with a genuine human touch.">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Debnil Dey — AI Engineer &amp; ML Researcher</title>
+<meta name="description" content="Debnil Dey is an AI Engineer and ML Researcher (B.Tech CSE AI, IEM Kolkata, CGPA 9.0) building reinforcement learning, multi-agent systems, clinical AI, and ML observability. Paper published at ICTTI 2026.">
+<meta name="author" content="Debnil Dey">
+<link rel="canonical" href="https://debddj.github.io/portfolio/">
+
+<!-- Open Graph & Social -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Debnil Dey — AI Engineer &amp; ML Researcher">
+<meta property="og:description" content="Machine learning systems across reinforcement learning, multi-agent orchestration, clinical AI, and real-time ML observability.">
+<meta property="og:url" content="https://debddj.github.io/portfolio/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Debnil Dey — AI Engineer &amp; ML Researcher">
+<meta name="twitter:description" content="Machine learning systems across reinforcement learning, multi-agent orchestration, clinical AI, and real-time ML observability.">
+
+<!-- Favicon -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230F1720'/%3E%3Crect x='1' y='1' width='62' height='62' rx='11' fill='none' stroke='%234FD1C5' stroke-width='2'/%3E%3Ctext x='32' y='42' font-family='JetBrains Mono,monospace' font-size='24' font-weight='700' text-anchor='middle' fill='%234FD1C5'%3EDD%3C/text%3E%3C/svg%3E">
+
+<!-- Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,400;1,8..60,600&display=swap" rel="stylesheet">
+
+<!-- Structured Data JSON-LD Schema for MNC Recruiters & Google Indexing -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Debnil Dey",
+  "jobTitle": "AI Engineer and ML Researcher",
+  "url": "https://debddj.github.io/portfolio/",
+  "email": "mailto:debddj24@gmail.com",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Kolkata",
+    "addressRegion": "West Bengal",
+    "addressCountry": "IN"
+  },
+  "alumniOf": {
+    "@type": "CollegeOrUniversity",
+    "name": "Institute of Engineering & Management, Kolkata"
+  },
+  "sameAs": [
+    "https://github.com/Debddj",
+    "https://www.linkedin.com/in/debnil-dey-359a25393/"
+  ],
+  "knowsAbout": [
+    "Reinforcement Learning",
+    "Multi-Agent Systems",
+    "Machine Learning Observability",
+    "Clinical AI & Explainable AI",
+    "PyTorch",
+    "FastAPI",
+    "Full-Stack ML Systems"
+  ]
+}
+</script>
+
 <style>
-  :root{
-    --void:#0A0D12;
-    --panel:#12161F;
-    --panel-hi:#171D29;
-    --line:#232A38;
-    --text:#E7EAF0;
-    --muted:#8891A3;
-    --amber:#FF9E2C;
-    --teal:#4FD1C5;
-    --amber-dim: rgba(255,158,44,.16);
-    --teal-dim: rgba(79,209,197,.14);
-    --radius: 12px;
-    --mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
-    --display: 'Space Grotesk', system-ui, sans-serif;
-    --body: 'Inter', system-ui, sans-serif;
+  :root {
+    --void: #090D14;
+    --bg: #0C111A;
+    --surface: #121824;
+    --surface-hi: #172030;
+    --surface-card: #151D2A;
+    --rule: #202B3C;
+    --rule-subtle: #182230;
+    --text: #E5EBF5;
+    --text-muted: #8F9EB2;
+    --text-dim: #627287;
+    
+    --teal: #4FD1C5;
+    --teal-glow: rgba(79, 209, 197, 0.16);
+    --teal-subtle: rgba(79, 209, 197, 0.08);
+    --amber: #FF9E2C;
+    --amber-glow: rgba(255, 158, 44, 0.18);
+    --amber-subtle: rgba(255, 158, 44, 0.08);
+
+    --serif: "Source Serif 4", Georgia, Cambria, "Times New Roman", serif;
+    --sans: "Source Sans 3", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --mono: "JetBrains Mono", SFMono-Regular, Consolas, "Liberation Mono", monospace;
+
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 14px;
   }
-  *{box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  body{
-    margin:0;
+
+  /* Base Reset */
+  *, *::before, *::after { box-sizing: border-box; }
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 24px;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    background-color: var(--bg);
+  }
+  body {
+    margin: 0;
     background:
-      radial-gradient(1200px 600px at 85% -10%, rgba(255,158,44,.06), transparent 60%),
-      radial-gradient(900px 500px at -10% 20%, rgba(79,209,197,.05), transparent 55%),
-      var(--void);
-    color:var(--text);
-    font-family:var(--body);
-    line-height:1.55;
-    -webkit-font-smoothing:antialiased;
+      radial-gradient(1200px 700px at 85% -5%, rgba(79, 209, 197, 0.04), transparent 60%),
+      radial-gradient(900px 500px at -10% 25%, rgba(255, 158, 44, 0.035), transparent 55%),
+      var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 16.5px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
-  ::selection{ background:var(--amber-dim); color:var(--text); }
-  a{ color:inherit; }
-  :focus-visible{ outline:2px solid var(--teal); outline-offset:3px; border-radius:4px; }
-  .wrap{ max-width:1120px; margin:0 auto; padding:0 28px; }
-  .eyebrow{
-    font-family:var(--mono); font-size:.72rem; letter-spacing:.14em; text-transform:uppercase;
-    color:var(--muted); display:flex; align-items:center; gap:.5em;
-  }
-  .eyebrow .dot{ width:6px; height:6px; border-radius:50%; background:var(--amber); box-shadow:0 0 6px var(--amber); }
 
-  /* ---------- HEADER / STATUS BAR ---------- */
-  header{
-    position:sticky; top:0; z-index:50;
-    background:rgba(10,13,18,.82); backdrop-filter:blur(10px);
-    border-bottom:1px solid var(--line);
+  ::selection { background: var(--teal-glow); color: var(--text); }
+  h1, h2, h3, h4, p, ul, dl, dd { margin: 0; }
+  ul { padding: 0; list-style: none; }
+  a {
+    color: var(--teal);
+    text-decoration: none;
+    transition: color 0.15s ease, border-color 0.15s ease;
   }
-  .status-row{
-    display:flex; align-items:center; justify-content:space-between;
-    height:56px; font-family:var(--mono); font-size:.74rem; color:var(--muted);
+  a:hover { color: #6ee7b7; }
+  :focus-visible {
+    outline: 2px solid var(--teal);
+    outline-offset: 3px;
+    border-radius: var(--radius-sm);
   }
-  .brand{ display:flex; align-items:center; gap:.6rem; color:var(--text); font-size:.8rem; letter-spacing:.02em; }
-  .brand .pulse{
-    width:8px; height:8px; border-radius:50%; background:var(--amber);
-    animation:blink 1.8s ease-in-out infinite;
-    box-shadow:0 0 8px var(--amber);
-  }
-  @keyframes blink{ 0%,100%{opacity:1;} 50%{opacity:.35;} }
-  nav{ display:flex; gap:1.6rem; }
-  nav a{ text-decoration:none; color:var(--muted); letter-spacing:.06em; transition:color .2s; }
-  nav a:hover{ color:var(--teal); }
-  .sys-meta{ display:flex; gap:1.4rem; align-items:center; }
-  .sys-meta span{ white-space:nowrap; }
-  .sys-meta .sep{ color:var(--line); }
-  @media (max-width:760px){ .sys-meta{ display:none; } }
 
-  section{ padding:96px 0; border-bottom:1px solid var(--line); }
-  section:last-of-type{ border-bottom:none; }
+  /* Skip Link for A11y */
+  .skip {
+    position: absolute;
+    left: 16px;
+    top: -48px;
+    z-index: 100;
+    background: var(--teal);
+    color: var(--void);
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 8px 16px;
+    border-radius: var(--radius-sm);
+    text-decoration: none;
+    transition: top 0.2s ease;
+  }
+  .skip:focus { top: 16px; }
 
-  /* ---------- HERO ---------- */
-  .hero{ padding-top:84px; padding-bottom:72px; }
-  .hero h1{
-    font-family:var(--display); font-weight:700;
-    font-size:clamp(2.6rem, 7vw, 5.2rem);
-    line-height:.98; letter-spacing:-.02em; margin:.5rem 0 1.1rem;
+  /* Top Telemetry Header */
+  .sys-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(12, 17, 26, 0.88);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--rule);
   }
-  .hero .lede{
-    max-width:640px; font-size:1.08rem; color:#C4CADA; margin:0 0 2rem;
+  .sys-header-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 28px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: var(--mono);
+    font-size: 0.73rem;
+    color: var(--text-muted);
   }
-  .hero .lede b{ color:var(--text); font-weight:600; }
-  .btn-row{ display:flex; gap:.9rem; flex-wrap:wrap; margin-bottom:4rem; }
-  .btn{
-    font-family:var(--mono); font-size:.78rem; letter-spacing:.04em; text-decoration:none;
-    padding:.85rem 1.3rem; border-radius:8px; display:inline-flex; align-items:center; gap:.5rem;
-    transition:transform .15s ease, border-color .2s, background .2s;
-    border:1px solid var(--line);
+  .sys-status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    color: var(--teal);
+    font-weight: 500;
+    letter-spacing: 0.04em;
   }
-  .btn:hover{ transform:translateY(-2px); }
-  .btn-solid{ background:var(--amber); color:#1A1200; border-color:var(--amber); font-weight:600;}
-  .btn-solid:hover{ background:#ffb04f; }
-  .btn-ghost{ color:var(--text); background:var(--panel); }
-  .btn-ghost:hover{ border-color:var(--teal); color:var(--teal); }
+  .sys-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--teal);
+    box-shadow: 0 0 8px var(--teal);
+    animation: statusPulse 2.4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+  @keyframes statusPulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.45; transform: scale(0.9); }
+  }
+  .sys-telemetry {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .sys-sep { color: var(--rule); }
 
-  /* Signature pipeline element */
-  .pipeline-shell{
-    border:1px solid var(--line); background:var(--panel); border-radius:var(--radius);
-    padding:1.6rem 1.4rem 1.3rem;
+  /* Two-column Layout Architecture */
+  .shell {
+    display: grid;
+    grid-template-columns: 270px minmax(0, 1fr);
+    column-gap: 72px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 32px;
   }
-  .pipeline-shell .cap{
-    font-family:var(--mono); font-size:.68rem; color:var(--muted); letter-spacing:.12em; text-transform:uppercase;
-    margin-bottom:1.3rem; display:flex; justify-content:space-between;
-  }
-  .pipeline-row{
-    display:flex; align-items:center;
-    overflow-x:auto; padding-bottom:6px; scrollbar-width:none;
-  }
-  .pipeline-row::-webkit-scrollbar{ display:none; }
-  .node{ flex:0 0 auto; display:flex; flex-direction:column; align-items:center; width:120px; }
-  .node .core{
-    width:56px; height:56px; border-radius:50%; background:var(--void);
-    border:2px solid var(--line); display:flex; align-items:center; justify-content:center;
-    font-family:var(--mono); font-size:.7rem; color:var(--muted);
-    animation:nodeGlow 4s ease-in-out infinite; transition:border-color .2s;
-  }
-  .node:nth-child(1) .core{ animation-delay:0s; }
-  .node:nth-child(3) .core{ animation-delay:1s; }
-  .node:nth-child(5) .core{ animation-delay:2s; }
-  .node:nth-child(7) .core{ animation-delay:3s; }
-  @keyframes nodeGlow{
-    0%, 12%, 100%{ border-color:var(--line); box-shadow:none; color:var(--muted); }
-    2%, 8%{ border-color:var(--amber); box-shadow:0 0 14px 1px rgba(255,158,44,.55); color:var(--amber); }
-  }
-  .node .label{ font-family:var(--display); font-weight:600; font-size:.86rem; margin-top:.7rem; letter-spacing:.01em; }
-  .node .verb{ font-family:var(--mono); font-size:.66rem; color:var(--muted); margin-top:.2rem; text-align:center; }
-  .connector{ flex:0 0 auto; width:64px; height:2px; background:var(--line); position:relative; margin-top:-28px; overflow:visible; }
-  .connector::after{
-    content:''; position:absolute; top:-3px; left:0; width:8px; height:8px; border-radius:50%;
-    background:var(--teal); box-shadow:0 0 8px var(--teal);
-    animation:travel 4s linear infinite;
-  }
-  .connector.c1::after{ animation-delay:0s; }
-  .connector.c2::after{ animation-delay:1s; }
-  .connector.c3::after{ animation-delay:2s; }
-  @keyframes travel{
-    0%{ left:-4px; opacity:0; } 4%{ opacity:1; } 22%{ left:calc(100% - 4px); opacity:1; } 26%{ opacity:0; } 100%{ opacity:0; left:calc(100% - 4px);}
-  }
-  @media (prefers-reduced-motion: reduce){
-    .node .core, .connector::after, .brand .pulse{ animation:none !important; }
-  }
-  @media (max-width:640px){ .node{ width:96px; } .connector{ width:34px; } }
 
-  /* ---------- SECTION HEADERS ---------- */
-  .sec-head{ margin-bottom:2.6rem; }
-  .sec-head .num{ font-family:var(--mono); color:var(--amber); font-size:.78rem; letter-spacing:.1em; }
-  .sec-head h2{
-    font-family:var(--display); font-size:clamp(1.7rem,3.4vw,2.4rem); font-weight:600;
-    margin:.4rem 0 .6rem; letter-spacing:-.01em;
-  }
-  .sec-head p{ color:var(--muted); max-width:560px; margin:0; }
-
-  /* ---------- ABOUT / PROFILE GRID ---------- */
-  .about-grid{ display:grid; grid-template-columns:0.95fr 1.05fr; gap:2.6rem; align-items:start; }
-  @media (max-width:880px){ .about-grid{ grid-template-columns:1fr; } }
-
-  /* DUAL PHOTO / AVATAR CARD */
-  .profile-card {
-    background: var(--panel);
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
-    padding: 1.2rem;
+  /* Desktop Sticky Left Sidebar */
+  .side {
+    position: sticky;
+    top: 44px;
+    align-self: start;
+    height: calc(100vh - 44px);
     display: flex;
     flex-direction: column;
-    gap: 1rem;
-    position: relative;
+    padding: 48px 0 36px;
   }
-  .mode-switch-bar {
+  .side-brand .name {
+    font-family: var(--serif);
+    font-size: 28px;
+    line-height: 1.15;
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    color: var(--text);
+  }
+  .side-brand .role {
+    margin-top: 8px;
+    color: var(--text-muted);
+    font-size: 15px;
+    line-height: 1.5;
+  }
+  .side-brand .loc {
+    margin-top: 4px;
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--text-dim);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  /* Vertical Section Navigation */
+  .nav { margin-top: 36px; }
+  .nav ul { display: grid; gap: 3px; }
+  .nav a {
+    display: block;
+    padding: 7px 0 7px 14px;
+    border-left: 2px solid var(--rule);
+    color: var(--text-muted);
+    font-size: 15px;
+    font-weight: 500;
+    transition: all 0.15s ease;
+  }
+  .nav a:hover {
+    color: var(--text);
+    border-left-color: var(--text-muted);
+  }
+  .nav a[aria-current="true"] {
+    color: var(--teal);
+    border-left-color: var(--teal);
+    font-weight: 600;
+    background: linear-gradient(90deg, var(--teal-subtle), transparent);
+  }
+
+  /* Sidebar Bottom Dock */
+  .side-dock {
+    margin-top: auto;
+    display: grid;
+    gap: 8px;
+    font-family: var(--mono);
+    font-size: 0.76rem;
+    padding-top: 20px;
+    border-top: 1px solid var(--rule);
+  }
+  .side-dock a {
+    color: var(--text-muted);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .side-dock a:hover { color: var(--teal); }
+
+  /* Right Scrolling Main Pane */
+  main {
+    padding: 48px 0 96px;
+    min-width: 0;
+  }
+
+  section + section { margin-top: 80px; }
+  
+  .sec-heading {
+    margin-bottom: 24px;
+    padding-top: 24px;
+    border-top: 1px solid var(--rule);
+  }
+  .sec-eyebrow {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--teal);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .sec-heading h2 {
+    font-family: var(--serif);
+    font-size: clamp(23px, 2.8vw, 29px);
+    line-height: 1.25;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--text);
+    margin-top: 4px;
+  }
+  .sec-heading p {
+    color: var(--text-muted);
+    font-size: 15px;
+    margin-top: 4px;
+  }
+
+  /* Section: About / Intro */
+  #about { padding-top: 0; }
+  .intro h1 {
+    font-family: var(--serif);
+    font-size: clamp(28px, 3.4vw, 38px);
+    line-height: 1.2;
+    font-weight: 600;
+    letter-spacing: -0.018em;
+    color: var(--text);
+    max-width: 22em;
+  }
+  .intro h1 .highlight {
+    color: var(--teal);
+    font-style: italic;
+    font-weight: 500;
+  }
+  .intro .lede {
+    margin-top: 22px;
+    max-width: 42em;
+    font-size: 18px;
+    line-height: 1.65;
+    color: var(--text);
+  }
+  .intro .lede-sub {
+    margin-top: 12px;
+    color: var(--text-muted);
+    font-size: 16px;
+    max-width: 42em;
+  }
+
+  /* CTAs */
+  .actions {
+    margin-top: 28px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border-radius: var(--radius-sm);
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    cursor: pointer;
+  }
+  .btn-primary {
+    background: var(--teal);
+    color: var(--void);
+    border: 1px solid var(--teal);
+  }
+  .btn-primary:hover {
+    background: #6ee7b7;
+    border-color: #6ee7b7;
+    color: var(--void);
+    box-shadow: 0 0 16px var(--teal-glow);
+  }
+  .btn-secondary {
+    background: var(--surface);
+    color: var(--text);
+    border: 1px solid var(--rule);
+  }
+  .btn-secondary:hover {
+    background: var(--surface-hi);
+    border-color: var(--text-muted);
+    color: var(--text);
+  }
+
+  /* Bento Fact Grid */
+  .fact-grid {
+    margin-top: 36px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  .fact-card {
+    background: var(--surface-card);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius-md);
+    padding: 16px 18px;
+    transition: border-color 0.2s ease;
+  }
+  .fact-card:hover { border-color: var(--teal); }
+  .fact-num {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    color: var(--amber);
+    letter-spacing: 0.08em;
+    font-weight: 600;
+  }
+  .fact-title {
+    font-family: var(--serif);
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--text);
+    margin-top: 3px;
+  }
+  .fact-desc {
+    color: var(--text-muted);
+    font-size: 14px;
+    margin-top: 4px;
+    line-height: 1.45;
+  }
+  .fact-desc b {
+    color: var(--text);
+    font-family: var(--mono);
+    font-weight: 600;
+  }
+
+  /* Agentic Closed-Loop Pipeline */
+  .pipeline-shell {
+    margin-top: 32px;
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius-md);
+    padding: 16px 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .pipeline-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    margin-bottom: 14px;
+    letter-spacing: 0.05em;
+  }
+  .pipeline-header span.tag {
+    color: var(--teal);
+    font-weight: 600;
+  }
+  .pipeline-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    position: relative;
+    z-index: 2;
+  }
+  .p-node {
+    background: var(--void);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius-sm);
+    padding: 12px 14px;
+    transition: border-color 0.2s ease;
+  }
+  .p-node:hover { border-color: var(--teal); }
+  .p-node-num {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    color: var(--teal);
+    font-weight: 600;
+  }
+  .p-node-label {
+    font-family: var(--serif);
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text);
+    margin-top: 2px;
+  }
+  .p-node-desc {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    color: var(--text-muted);
+    margin-top: 4px;
+    line-height: 1.35;
+  }
+  .pipeline-track {
+    position: relative;
+    height: 2px;
+    background: var(--rule);
+    margin-top: 14px;
+    border-radius: 1px;
+    overflow: hidden;
+  }
+  .pipeline-dot {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 25%;
+    background: linear-gradient(90deg, transparent, var(--teal), transparent);
+    animation: flowSignal 3.2s linear infinite;
+  }
+  @keyframes flowSignal {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(400%); }
+  }
+
+  /* Dual Photo / Avatar & Terminal Inspector */
+  .profile-inspector {
+    margin-top: 36px;
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 20px;
+    align-items: start;
+  }
+  .photo-card {
+    background: var(--surface-card);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius-md);
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .photo-switch {
     display: flex;
     background: var(--void);
-    border: 1px solid var(--line);
-    border-radius: 8px;
-    padding: 4px;
-    gap: 4px;
+    border: 1px solid var(--rule);
+    border-radius: var(--radius-sm);
+    padding: 3px;
+    gap: 3px;
   }
-  .mode-btn {
+  .photo-btn {
     flex: 1;
     background: transparent;
     border: none;
-    color: var(--muted);
+    color: var(--text-muted);
     font-family: var(--mono);
-    font-size: 0.72rem;
-    padding: 0.55rem 0.8rem;
-    border-radius: 6px;
+    font-size: 0.7rem;
+    padding: 5px 8px;
+    border-radius: 4px;
     cursor: pointer;
     transition: all 0.2s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.4rem;
   }
-  .mode-btn:hover { color: var(--text); }
-  .mode-btn.active-human {
-    background: var(--amber-dim);
+  .photo-btn:hover { color: var(--text); }
+  .photo-btn.active-human {
+    background: var(--amber-glow);
     color: var(--amber);
     font-weight: 600;
-    border: 1px solid rgba(255,158,44,0.3);
   }
-  .mode-btn.active-avatar {
-    background: var(--teal-dim);
+  .photo-btn.active-avatar {
+    background: var(--teal-glow);
     color: var(--teal);
     font-weight: 600;
-    border: 1px solid rgba(79,209,197,0.3);
   }
   .photo-viewport {
     position: relative;
     width: 100%;
-    height: 420px;
-    border-radius: 10px;
+    height: 290px;
+    border-radius: var(--radius-sm);
     overflow: hidden;
     background: var(--void);
-    border: 2px solid var(--line);
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
-  }
-  .photo-viewport.human-active {
-    border-color: var(--amber);
-    box-shadow: 0 0 20px rgba(255, 158, 44, 0.22);
-  }
-  .photo-viewport.avatar-active {
-    border-color: var(--teal);
-    box-shadow: 0 0 20px rgba(79, 209, 197, 0.22);
+    border: 1px solid var(--rule);
   }
   .photo-img {
     position: absolute;
@@ -235,510 +578,1193 @@
     height: 100%;
     object-fit: cover;
     object-position: center top;
-    transition: opacity 0.4s ease, transform 0.4s ease;
+    transition: opacity 0.35s ease, transform 0.35s ease;
   }
   .photo-img.hidden {
     opacity: 0;
     pointer-events: none;
-    transform: scale(1.03);
+    transform: scale(1.02);
   }
   .photo-caption {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    color: var(--text-muted);
+    padding: 0 2px;
+  }
+  .photo-badge {
+    padding: 2px 7px;
+    border-radius: 12px;
+    background: var(--void);
+    border: 1px solid var(--rule);
+    font-size: 0.65rem;
+    color: var(--amber);
+  }
+
+  /* Terminal Card */
+  .terminal {
+    background: var(--surface-card);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius-md);
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    overflow: hidden;
+  }
+  .terminal-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 14px;
+    border-bottom: 1px solid var(--rule);
+    background: var(--surface);
+  }
+  .terminal-dots {
+    display: flex;
+    gap: 6px;
+  }
+  .terminal-dots span {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--rule);
+  }
+  .terminal-title {
+    font-size: 0.68rem;
+    color: var(--text-dim);
+    letter-spacing: 0.05em;
+  }
+  .terminal-body {
+    padding: 16px 18px;
+    line-height: 1.6;
+  }
+  .t-line { margin-bottom: 8px; }
+  .t-prompt { color: var(--teal); font-weight: 600; }
+  .t-out { color: var(--text-muted); padding-left: 14px; }
+  .t-out b { color: var(--text); font-weight: 600; }
+
+  /* Human craft signature note */
+  .signature-note {
+    margin-top: 16px;
+    padding: 12px 14px;
+    background: var(--amber-subtle);
+    border-left: 3px solid var(--amber);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    font-size: 0.86rem;
+    color: #DEE5F2;
+    line-height: 1.55;
+  }
+  .signature-note b { color: var(--text); }
+  .signature-by {
+    display: block;
+    margin-top: 5px;
     font-family: var(--mono);
     font-size: 0.72rem;
-    color: var(--muted);
+    color: var(--amber);
+  }
+
+  /* Projects */
+  .project-list { display: grid; gap: 24px; }
+  .project-card {
+    background: var(--surface-card);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius-md);
+    padding: 24px;
+    transition: all 0.2s ease;
+  }
+  .project-card:hover {
+    border-color: rgba(79, 209, 197, 0.4);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  }
+  .p-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 8px 18px;
+  }
+  .p-head h3 {
+    font-family: var(--serif);
+    font-size: 21px;
+    line-height: 1.3;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .p-badge {
+    display: inline-block;
+    margin-left: 8px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    background: var(--amber-glow);
+    color: var(--amber);
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    font-weight: 600;
+    vertical-align: 2px;
+    border: 1px solid rgba(255, 158, 44, 0.3);
+  }
+  .p-badge.dev {
+    background: var(--teal-glow);
+    color: var(--teal);
+    border-color: rgba(79, 209, 197, 0.3);
+  }
+  .p-links {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    font-weight: 500;
+  }
+  .p-links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    color: var(--teal);
+  }
+  .p-links a:hover { text-decoration: underline; }
+  .p-desc {
+    margin-top: 10px;
+    color: var(--text);
+    font-size: 15.5px;
+    line-height: 1.6;
+    max-width: 46em;
+  }
+  .p-result {
+    margin-top: 10px;
+    padding: 8px 12px;
+    background: var(--surface);
+    border-left: 2px solid var(--teal);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    font-size: 14.5px;
+    color: #CFDAE8;
+    max-width: 46em;
+  }
+  .p-result b { color: var(--teal); font-family: var(--mono); }
+  .p-stack {
+    margin-top: 12px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .stack-tag {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    background: var(--void);
+    border: 1px solid var(--rule);
+    padding: 2px 8px;
+    border-radius: 4px;
+  }
+
+  /* Compact Secondary Projects */
+  .subhead {
+    font-family: var(--serif);
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text);
+    margin: 40px 0 16px;
+  }
+  .compact-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+  .compact-card {
+    background: var(--surface-card);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius-md);
+    padding: 18px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: border-color 0.2s ease;
+  }
+  .compact-card:hover { border-color: var(--teal); }
+  .compact-card h4 {
+    font-family: var(--serif);
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .compact-card .c-desc {
+    font-size: 14px;
+    color: var(--text-muted);
+    margin-top: 6px;
+    line-height: 1.5;
+  }
+  .compact-card .c-meta {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--text-dim);
+    margin-top: 12px;
+  }
+  .compact-card.full-span { grid-column: 1 / -1; }
+  .contact-intro { color: var(--text); font-size: 16px; max-width: 42em; }
+
+  /* Timeline Rows (Research, Experience, Education) */
+  .timeline { display: grid; gap: 0; }
+  .t-row {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: 24px;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .t-row:first-child { padding-top: 0; }
+  .t-row:last-child { border-bottom: none; }
+  .t-when {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    color: var(--teal);
+    font-weight: 500;
+    padding-top: 3px;
+  }
+  .t-when.historic { color: var(--text-dim); }
+  .t-content .t-title {
+    font-family: var(--serif);
+    font-size: 17.5px;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .t-content .t-sub {
+    color: var(--amber);
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    margin-top: 2px;
+  }
+  .t-content .t-note {
+    color: var(--text-muted);
+    font-size: 14.5px;
+    line-height: 1.55;
+    margin-top: 5px;
+    max-width: 44em;
+  }
+  .t-content .t-note b { color: var(--text); }
+
+  /* Skills Matrix */
+  .skills-matrix { display: grid; gap: 8px; }
+  .skill-row {
+    display: grid;
+    grid-template-columns: 170px 1fr;
+    gap: 20px;
+    padding: 14px 16px;
+    background: var(--surface-card);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius-sm);
+    align-items: center;
+  }
+  .skill-cat {
+    font-family: var(--mono);
+    font-size: 0.76rem;
+    color: var(--teal);
+    font-weight: 600;
+  }
+  .skill-items {
+    font-size: 14.5px;
+    color: var(--text);
+    line-height: 1.5;
+  }
+
+  /* Certifications List */
+  .certs-list {
+    margin-top: 14px;
+    display: grid;
+    gap: 8px;
+  }
+  .cert-item {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius-sm);
+    padding: 10px 14px;
+    font-size: 14.5px;
+    color: var(--text);
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+  }
+  .cert-issuer {
+    font-family: var(--mono);
+    font-size: 0.74rem;
+    color: var(--text-dim);
+  }
+
+  /* Contact & Placement Inquiries */
+  .contact-box {
+    background: var(--surface-card);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius-md);
+    padding: 24px;
+  }
+  .contact-channels {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    margin-top: 20px;
+  }
+  .channel-card {
+    background: var(--void);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius-sm);
+    padding: 12px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    transition: border-color 0.15s ease;
+  }
+  .channel-card:hover { border-color: var(--teal); }
+  .channel-label {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    color: var(--text-dim);
+    text-transform: uppercase;
+  }
+  .channel-val {
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    color: var(--teal);
+    word-break: break-all;
+  }
+
+  /* Recruiter Callout Box */
+  .recruiter-note {
+    margin-top: 20px;
+    padding: 14px 16px;
+    background: var(--teal-subtle);
+    border: 1px solid rgba(79, 209, 197, 0.25);
+    border-radius: var(--radius-sm);
+    font-size: 14.5px;
+    color: var(--text);
+    line-height: 1.55;
+  }
+  .recruiter-note b { color: var(--teal); }
+
+  /* Page Footer */
+  footer.page {
+    margin-top: 80px;
+    padding-top: 24px;
+    border-top: 1px solid var(--rule);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 0.2rem;
-  }
-  .photo-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    font-size: 0.68rem;
+    color: var(--text-dim);
     font-family: var(--mono);
-    padding: 0.25rem 0.6rem;
-    border-radius: 20px;
-    background: var(--void);
-    border: 1px solid var(--line);
+    font-size: 0.73rem;
   }
 
-  .terminal{
-    background:var(--panel); border:1px solid var(--line); border-radius:var(--radius);
-    font-family:var(--mono); font-size:.84rem; overflow:hidden;
-  }
-  .terminal .bar{ display:flex; gap:6px; padding:.7rem .9rem; border-bottom:1px solid var(--line); }
-  .terminal .bar span{ width:10px; height:10px; border-radius:50%; background:var(--line); }
-  .terminal .body{ padding:1.1rem 1.2rem 1.4rem; }
-  .terminal .ln{ margin:0 0 .55rem; }
-  .terminal .p{ color:var(--teal); }
-  .terminal .out{ color:var(--muted); padding-left:1.1rem; }
-  .terminal .out b{ color:var(--text); font-weight:600; }
-
-  .about-copy p{ color:#C4CADA; margin:0 0 1.1rem; }
-  .about-copy .tags{ display:flex; flex-wrap:wrap; gap:.5rem; margin-top:1.3rem; }
-  .tag{
-    font-family:var(--mono); font-size:.7rem; color:var(--muted); border:1px solid var(--line);
-    padding:.35rem .65rem; border-radius:6px; background:var(--panel);
-  }
-
-  .human-signature-box {
-    margin-top: 1.5rem;
-    padding: 1.1rem 1.3rem;
-    background: rgba(255, 158, 44, 0.05);
-    border-left: 3px solid var(--amber);
-    border-radius: 0 10px 10px 0;
-    font-size: 0.92rem;
-    color: #D6DCED;
-    line-height: 1.65;
-  }
-  .human-signature-box b { color: var(--text); }
-  .human-signature-box .sign {
-    display: block;
-    margin-top: 0.6rem;
-    font-family: var(--mono);
-    font-size: 0.76rem;
-    color: var(--amber);
-    letter-spacing: 0.05em;
-  }
-
-  /* ---------- AGENTS / PROJECTS ---------- */
-  .agents-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:1.2rem; }
-  @media (max-width:940px){ .agents-grid{ grid-template-columns:repeat(2,1fr); } }
-  @media (max-width:620px){ .agents-grid{ grid-template-columns:1fr; } }
-
-  .card{
-    background:var(--panel); border:1px solid var(--line); border-radius:var(--radius);
-    padding:1.5rem; display:flex; flex-direction:column; transition:border-color .2s, transform .2s;
-  }
-  .card:hover{ border-color:#2E3648; transform:translateY(-3px); }
-  .card-top{ display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:.7rem; gap:.6rem;}
-  .card h3{ font-family:var(--display); font-size:1.15rem; font-weight:600; margin:0; }
-  .pill{
-    font-family:var(--mono); font-size:.62rem; letter-spacing:.08em; padding:.3rem .55rem;
-    border-radius:20px; white-space:nowrap; text-transform:uppercase; border:1px solid transparent;
-  }
-  .pill-live{ background:var(--amber-dim); color:var(--amber); border-color:rgba(255,158,44,.35); }
-  .pill-active{ background:var(--teal-dim); color:var(--teal); border-color:rgba(79,209,197,.3); }
-  .pill-wip{ background:var(--panel-hi); color:var(--muted); border-color:var(--line); }
-  .card p.desc{ color:#B7BECF; font-size:.9rem; margin:0 0 1rem; flex-grow:1; }
-  .stack{ display:flex; flex-wrap:wrap; gap:.4rem; margin-bottom:1rem; }
-  .stack span{ font-family:var(--mono); font-size:.66rem; color:var(--muted); background:var(--void); border:1px solid var(--line); padding:.22rem .5rem; border-radius:5px; }
-  .card-links{ display:flex; gap:1.1rem; font-family:var(--mono); font-size:.76rem; margin-top:auto; }
-  .card-links a{ text-decoration:none; color:var(--teal); transition:opacity .2s; }
-  .card-links a:hover{ opacity:.7; }
-
-  /* Featured Aegis card */
-  .featured{
-    grid-column:1/-1; background:linear-gradient(160deg, var(--panel), var(--panel-hi));
-    border:1px solid #2A3345; padding:2rem;
-  }
-  .featured-top{ display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:1rem; margin-bottom:1.4rem; }
-  .featured h3{ font-family:var(--display); font-size:1.7rem; font-weight:700; margin:.2rem 0; }
-  .featured .sub{ color:var(--muted); font-size:.85rem; font-family:var(--mono); }
-  .featured p.desc{ max-width:640px; color:#C4CADA; font-size:.96rem; margin-bottom:1.6rem; }
-  .stage-flow{ display:flex; align-items:stretch; gap:.5rem; flex-wrap:wrap; margin-bottom:1.6rem; }
-  .stage{
-    flex:1 1 130px; background:var(--void); border:1px solid var(--line); border-radius:9px;
-    padding:.85rem .9rem; position:relative;
-  }
-  .stage .k{ font-family:var(--mono); font-size:.62rem; color:var(--amber); letter-spacing:.1em; }
-  .stage .n{ font-family:var(--display); font-weight:600; font-size:.98rem; margin:.3rem 0 .25rem; }
-  .stage .d{ font-family:var(--mono); font-size:.72rem; color:var(--muted); }
-  .stage-arrow{ align-self:center; color:var(--line); font-family:var(--mono); font-size:1.1rem; }
-  @media (max-width:760px){ .stage-arrow{ display:none; } }
-
-  /* Also in the lab strip */
-  .lab-strip{ margin-top:1.6rem; border-top:1px dashed var(--line); padding-top:1.4rem; }
-  .lab-strip .cap{ font-family:var(--mono); font-size:.7rem; color:var(--muted); letter-spacing:.1em; text-transform:uppercase; margin-bottom:.9rem; }
-  .lab-list{ display:flex; flex-wrap:wrap; gap:.7rem 1.6rem; }
-  .lab-list a{
-    font-family:var(--mono); font-size:.82rem; text-decoration:none; color:var(--text);
-    display:flex; align-items:center; gap:.4rem; border-bottom:1px solid transparent; padding-bottom:2px;
-  }
-  .lab-list a:hover{ color:var(--teal); border-color:var(--teal); }
-  .lab-list .mut{ color:var(--muted); font-size:.78rem; }
-
-  /* ---------- CAPABILITY REGISTRY ---------- */
-  table.registry{ width:100%; border-collapse:collapse; }
-  table.registry tr{ border-bottom:1px solid var(--line); }
-  table.registry tr:first-child{ border-top:1px solid var(--line); }
-  table.registry td{ padding:1.05rem .4rem; vertical-align:top; }
-  table.registry td.k{
-    font-family:var(--mono); font-size:.78rem; color:var(--amber); width:230px; letter-spacing:.03em;
-  }
-  table.registry td.v{ font-family:var(--mono); font-size:.85rem; color:#C4CADA; line-height:1.9; }
-  @media (max-width:700px){
-    table.registry, table.registry tbody, table.registry tr, table.registry td{ display:block; width:auto; }
-    table.registry tr{ padding:1rem 0; }
-    table.registry td.k{ padding-bottom:.3rem; }
+  /* Responsive Rules */
+  @media (max-width: 960px) {
+    .shell {
+      grid-template-columns: 1fr;
+      padding: 0 20px;
+    }
+    .side {
+      position: static;
+      height: auto;
+      padding: 28px 0 16px;
+    }
+    .side-dock { display: none; }
+    .nav { margin-top: 16px; }
+    .nav ul {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 14px;
+      overflow-x: auto;
+      padding-bottom: 6px;
+      scrollbar-width: none;
+    }
+    .nav ul::-webkit-scrollbar { display: none; }
+    .nav a {
+      padding: 4px 0;
+      border-left: none;
+      border-bottom: 2px solid transparent;
+      font-size: 14.5px;
+    }
+    .nav a[aria-current="true"] {
+      border-bottom-color: var(--teal);
+      background: none;
+    }
+    main { padding: 32px 0 64px; }
+    .pipeline-grid { grid-template-columns: repeat(2, 1fr); }
+    .profile-inspector { grid-template-columns: 1fr; }
+    .compact-grid { grid-template-columns: 1fr; }
+    .contact-channels { grid-template-columns: 1fr; }
   }
 
-  /* ---------- CONNECT ---------- */
-  .connect-grid{ display:grid; grid-template-columns:1fr 1fr; gap:2.6rem; align-items:center; }
-  @media (max-width:860px){ .connect-grid{ grid-template-columns:1fr; } }
-  .connect-actions{ display:flex; flex-direction:column; gap:.8rem; align-items:flex-start; }
-  .connect-actions .btn{ width:100%; justify-content:center; }
-  .connect-note{ font-family:var(--mono); font-size:.78rem; color:var(--muted); margin-top:1.4rem; line-height:1.9; }
+  @media (max-width: 640px) {
+    .sys-header-inner { font-size: 0.68rem; padding: 0 16px; }
+    .fact-grid { grid-template-columns: 1fr; }
+    .pipeline-grid { grid-template-columns: 1fr; }
+    .t-row { grid-template-columns: 1fr; gap: 4px; }
+    .t-when { order: -1; }
+    .skill-row { grid-template-columns: 1fr; gap: 4px; }
+    footer.page { flex-direction: column; gap: 8px; text-align: center; }
+  }
 
-  footer{ padding:2.4rem 0; }
-  footer .wrap{ display:flex; justify-content:space-between; flex-wrap:wrap; gap:.8rem; font-family:var(--mono); font-size:.72rem; color:var(--muted); }
-
-  /* reveal on scroll */
-  .reveal{ opacity:0; transform:translateY(16px); transition:opacity .6s ease, transform .6s ease; }
-  .reveal.in{ opacity:1; transform:none; }
-  @media (prefers-reduced-motion: reduce){ .reveal{ opacity:1; transform:none; transition:none; } }
+  /* Print Stylesheet for Executive CV Generation */
+  @media print {
+    .sys-header, .side, .actions, .skip, .photo-switch, .pipeline-track { display: none !important; }
+    .shell { display: block; max-width: 100%; padding: 0; }
+    body { background: #fff !important; color: #111 !important; font-size: 12pt; }
+    a { color: #111 !important; text-decoration: underline; }
+    .project-card, .compact-card, .fact-card, .skill-row, .p-node, .contact-box {
+      border: 1px solid #ddd !important;
+      background: #fff !important;
+      break-inside: avoid;
+    }
+    .sec-heading h2, .intro h1 { color: #000 !important; }
+  }
 </style>
 </head>
-<body>
 
-<header>
-  <div class="wrap status-row">
-    <div class="brand"><span class="pulse"></span>D. DEY // SYSTEM ONLINE</div>
-    <nav>
-      <a href="#about">PROFILE</a>
-      <a href="#agents">AGENTS</a>
-      <a href="#stack">STACK</a>
-      <a href="#connect">CONNECT</a>
-    </nav>
-    <div class="sys-meta">
-      <span id="clock">IST --:--:--</span>
-      <span class="sep">·</span>
-      <span id="uptime">SESSION 00:00:00</span>
-      <span class="sep">·</span>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+
+<!-- Telemetry & Live System Status -->
+<header class="sys-header" aria-label="System telemetry">
+  <div class="sys-header-inner">
+    <div class="sys-status-badge">
+      <span class="sys-dot"></span>
+      <span>SYSTEM STATUS: READY FOR AI ROLES (2026/2027)</span>
+    </div>
+    <div class="sys-telemetry">
+      <span id="liveClock">IST --:--:--</span>
+      <span class="sys-sep">·</span>
+      <span id="sessionTimer">UPTIME 00:00:00</span>
+      <span class="sys-sep">·</span>
       <span>KOLKATA, IN</span>
     </div>
   </div>
 </header>
 
-<main class="wrap">
+<div class="shell">
 
-  <!-- HERO -->
-  <section class="hero" id="top">
-    <div class="eyebrow"><span class="dot"></span> AI ENGINEER — MULTI-AGENT SYSTEMS &amp; REAL-TIME ML INFRA</div>
-    <h1>DEBNIL<br>DEY</h1>
-    <p class="lede">I build systems that <b>watch, reason, and act on their own</b> — from ML infrastructure that diagnoses and fixes its own incidents, to browsers that track your hands in 3D. B.Tech CSE (AI) student at IEM Kolkata, shipping agentic tools with human craft.</p>
-    <div class="btn-row">
-      <a href="#agents" class="btn btn-solid">→ VIEW DEPLOYED AGENTS</a>
-      <a href="#connect" class="btn btn-ghost">OPEN CHANNEL</a>
+  <!-- Desktop Sticky Left Sidebar -->
+  <aside class="side" aria-label="Profile navigation">
+    <div class="side-brand">
+      <p class="name">Debnil Dey</p>
+      <p class="role">AI Engineer &amp; ML Researcher</p>
+      <p class="loc">⚡ Kolkata, India · IEM (2024–2028)</p>
     </div>
 
-    <!-- Agentic Workflow Diagram (Intact) -->
-    <div class="pipeline-shell reveal">
-      <div class="cap"><span>HOW I WORK — A LOOP, NOT A LIST</span><span>04 STAGES · LOOPING</span></div>
-      <div class="pipeline-row">
-        <div class="node"><div class="core">01</div><div class="label">Observe</div><div class="verb">read the system</div></div>
-        <div class="connector c1"></div>
-        <div class="node"><div class="core">02</div><div class="label">Reason</div><div class="verb">form a hypothesis</div></div>
-        <div class="connector c2"></div>
-        <div class="node"><div class="core">03</div><div class="label">Build</div><div class="verb">ship the fix</div></div>
-        <div class="connector c3"></div>
-        <div class="node"><div class="core">04</div><div class="label">Ship</div><div class="verb">measure, repeat</div></div>
+    <nav class="nav" aria-label="Sections">
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#research">Research &amp; Recognition</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#skills">Skills &amp; Tooling</a></li>
+        <li><a href="#education">Education &amp; Certs</a></li>
+        <li><a href="#contact">Contact &amp; Placement</a></li>
+      </ul>
+    </nav>
+
+    <div class="side-dock">
+      <a href="mailto:debddj24@gmail.com">
+        <span>✉</span> debddj24@gmail.com
+      </a>
+      <a href="https://github.com/Debddj" target="_blank" rel="noopener">
+        <span>⌥</span> github.com/Debddj
+      </a>
+      <a href="https://www.linkedin.com/in/debnil-dey-359a25393/" target="_blank" rel="noopener">
+        <span>◈</span> linkedin.com/in/debnil-dey
+      </a>
+      <a href="assets/Debnil_Dey_CV.pdf" download>
+        <span>↓</span> Download CV (PDF)
+      </a>
+    </div>
+  </aside>
+
+  <!-- Right Scrolling Main Content Pane -->
+  <main id="main">
+
+    <!-- ===== ABOUT / HERO ===== -->
+    <section id="about" class="intro" aria-labelledby="about-h">
+      <div class="sec-eyebrow"><span class="sys-dot"></span> 00 / PROFILE &amp; MISSION</div>
+      <h1 id="about-h">
+        I build and study machine learning systems, from <span class="highlight">multi-agent reinforcement learning</span> to clinical decision support and ML observability.
+      </h1>
+
+      <p class="lede">
+        I am a third-year B.Tech student in Computer Science (Artificial Intelligence) at the <b>Institute of Engineering &amp; Management (IEM), Kolkata</b>. My work spans reinforcement learning, large language models, computer vision, and clinical AI, with a focus on systems that run end to end: models, services, dashboards, and automated deployment.
+      </p>
+      <p class="lede-sub">
+        Actively seeking AI infrastructure, research, and ML systems engineering internships and early-cohort roles.
+      </p>
+
+      <div class="actions">
+        <a class="btn btn-primary" href="assets/Debnil_Dey_CV.pdf" download>
+          <span>↓</span> Download Formal CV
+        </a>
+        <a class="btn btn-secondary" href="mailto:debddj24@gmail.com">
+          <span>✉</span> Email Debnil
+        </a>
       </div>
-    </div>
-  </section>
 
-  <!-- ABOUT / PROFILE -->
-  <section id="about">
-    <div class="sec-head reveal">
-      <div class="num">00 / PROFILE</div>
-      <h2>Agent &amp; Human Profile</h2>
-      <p>The engineer behind the pipeline — bridging human intention with autonomous agents.</p>
-    </div>
-    
-    <div class="about-grid">
-      
-      <!-- DUAL PHOTO / AI AVATAR CARD -->
-      <div class="profile-card reveal">
-        <div class="mode-switch-bar">
-          <button id="btnHuman" class="mode-btn active-human" onclick="switchMode('human')">
-            <span>👤 Physical Human</span>
-          </button>
-          <button id="btnAvatar" class="mode-btn" onclick="switchMode('avatar')">
-            <span>🤖 AI Avatar</span>
-          </button>
+      <!-- Bento Fact Grid -->
+      <div class="fact-grid">
+        <div class="fact-card">
+          <span class="fact-num">01 // ACADEMICS</span>
+          <p class="fact-title">B.Tech CSE (AI) — IEM Kolkata</p>
+          <p class="fact-desc">Current Cumulative GPA: <b>9.0 / 10.0</b> (2024–2028)</p>
+        </div>
+        <div class="fact-card">
+          <span class="fact-num">02 // PEER-REVIEWED RESEARCH</span>
+          <p class="fact-title">First-Author Paper at ICTTI 2026</p>
+          <p class="fact-desc">Presented at NIU Greater Noida · Anomaly detection &amp; telemetry</p>
+        </div>
+        <div class="fact-card">
+          <span class="fact-num">03 // COMPETITIVE ENGINEERING</span>
+          <p class="fact-title">Smart India Hackathon 2026</p>
+          <p class="fact-desc">National Grand Finale Round · Pramaan compliance scanner</p>
+        </div>
+        <div class="fact-card">
+          <span class="fact-num">04 // OPEN-SOURCE CONTRIBUTION</span>
+          <p class="fact-title">GSSoC 2026 Contributor</p>
+          <p class="fact-desc">Python, React, FastAPI, model optimization &amp; agentic tooling</p>
+        </div>
+      </div>
+
+      <!-- Agentic Closed-Loop Pipeline -->
+      <div class="pipeline-shell">
+        <div class="pipeline-header">
+          <span>CLOSED-LOOP AGENTIC WORKFLOW</span>
+          <span class="tag">04 STAGES · TELEMETRY INTACT</span>
+        </div>
+        <div class="pipeline-grid">
+          <div class="p-node">
+            <span class="p-node-num">01. OBSERVE</span>
+            <p class="p-node-label">Read the System</p>
+            <p class="p-node-desc">Streaming ingestion, PSI/KS drift tracking, sensor telemetry</p>
+          </div>
+          <div class="p-node">
+            <span class="p-node-num">02. REASON</span>
+            <p class="p-node-label">Form Hypothesis</p>
+            <p class="p-node-desc">Hierarchical agent coordination, SHAP explainability, root-cause</p>
+          </div>
+          <div class="p-node">
+            <span class="p-node-num">03. BUILD</span>
+            <p class="p-node-label">Ship the Fix</p>
+            <p class="p-node-desc">FastAPI services, asynchronous Celery workers, containerized deploy</p>
+          </div>
+          <div class="p-node">
+            <span class="p-node-num">04. SHIP</span>
+            <p class="p-node-label">Measure &amp; Repeat</p>
+            <p class="p-node-desc">WebSockets alerts, continuous monitoring, self-healing loop</p>
+          </div>
+        </div>
+        <div class="pipeline-track">
+          <div class="pipeline-dot"></div>
+        </div>
+      </div>
+
+      <!-- Dual Photo/Avatar & Terminal Inspector -->
+      <div class="profile-inspector">
+        <div class="photo-card">
+          <div class="photo-switch">
+            <button id="btnHuman" class="photo-btn active-human" onclick="setPhotoView('human')">
+              👤 Physical
+            </button>
+            <button id="btnAvatar" class="photo-btn" onclick="setPhotoView('avatar')">
+              🤖 AI Avatar
+            </button>
+          </div>
+          <div id="photoViewport" class="photo-viewport">
+            <img id="imgHuman" src="assets/debnil_original.png" alt="Debnil Dey - Portrait Photo" class="photo-img">
+            <img id="imgAvatar" src="assets/debnil_avatar.png" alt="Debnil Dey - AI Generated Avatar" class="photo-img hidden">
+          </div>
+          <div class="photo-caption">
+            <span id="captionText">Debnil Dey · Kolkata</span>
+            <span class="photo-badge" id="modeBadge">HUMAN IN THE LOOP</span>
+          </div>
         </div>
 
-        <div id="photoViewport" class="photo-viewport human-active">
-          <img id="imgHuman" src="assets/debnil_original.png" alt="Debnil Dey - Original Photo" class="photo-img">
-          <img id="imgAvatar" src="assets/debnil_avatar.png" alt="Debnil Dey - AI Avatar" class="photo-img hidden">
-        </div>
-
-        <div class="photo-caption">
-          <span id="captionText">⚡ Debnil Dey — Kolkata, India</span>
-          <span class="photo-badge" id="modeBadge">HUMAN IN THE LOOP</span>
-        </div>
-
-        <!-- CLI TERMINAL -->
-        <div class="terminal" style="margin-top:0.4rem;">
-          <div class="bar"><span></span><span></span><span></span></div>
-          <div class="body">
-            <p class="ln"><span class="p">$</span> whoami</p>
-            <p class="ln out">Debnil Dey — B.Tech CSE (AI), <b>IEM Kolkata</b> · 2024–2028</p>
-            <p class="ln"><span class="p">$</span> current_focus</p>
-            <p class="ln out">agentic AI systems · multi-agent orchestration · real-time ML infra</p>
-            <p class="ln"><span class="p">$</span> status</p>
-            <p class="ln out">building in public, one repo at a time</p>
+        <div class="terminal">
+          <div class="terminal-bar">
+            <div class="terminal-dots">
+              <span></span><span></span><span></span>
+            </div>
+            <span class="terminal-title">debnil@agentic-core: ~</span>
+          </div>
+          <div class="terminal-body">
+            <div class="t-line">
+              <span class="t-prompt">$</span> whoami
+              <p class="t-out">Debnil Dey — B.Tech CSE (AI), <b>IEM Kolkata</b> · 2024–2028 · CGPA 9.0</p>
+            </div>
+            <div class="t-line">
+              <span class="t-prompt">$</span> current_focus
+              <p class="t-out">multi-agent reinforcement learning · ML observability · low-latency inference</p>
+            </div>
+            <div class="t-line">
+              <span class="t-prompt">$</span> core_mission
+              <p class="t-out">bridging deep learning theory with robust, fault-tolerant production services</p>
+            </div>
+            <div class="signature-note">
+              <b>Engineering Philosophy:</b> "AI automates the loop, but human intent, ethics, and craft drive the mission. I build agentic tools not to obscure complexity, but to give engineers transparent control over autonomous pipelines."
+              <span class="signature-by">— Debnil Dey, AI Systems Engineer</span>
+            </div>
           </div>
         </div>
       </div>
+    </section>
 
-      <!-- ABOUT COPY & HUMAN TOUCH NOTE -->
-      <div class="about-copy reveal">
-        <p>I like systems that don't wait to be told what's wrong. Most of what I build follows the same shape: something senses a change in the world — a metric drifting, a hand moving, a transaction landing — and a chain of small, specialized agents decides what to do about it.</p>
-        <p>That's shown up as an SRE pipeline that triages its own ML incidents, an observability platform that catches model drift before it costs you, and tools that turn raw signals — video frames, gestures, bank statements — into something a person can act on immediately.</p>
-        
-        <div class="tags">
-          <span class="tag">Google ADK</span><span class="tag">Gemini</span><span class="tag">PyTorch</span>
-          <span class="tag">FastAPI</span><span class="tag">React / TS</span><span class="tag">CUDA / TensorRT</span>
-          <span class="tag">Reinforcement Learning</span>
-        </div>
-
-        <!-- HUMAN TOUCH PERSONAL NOTE -->
-        <div class="human-signature-box">
-          <b>Behind the Code &amp; Algorithms:</b><br>
-          "AI automates the loop, but human intent, ethics, and craft drive the mission. I build agentic tools not to hide the human element, but to amplify what one engineer in Kolkata can imagine and execute."
-          <span class="sign">— Debnil Dey · Hand-crafted with care in Kolkata ☕</span>
-        </div>
+    <!-- ===== PROJECTS ===== -->
+    <section id="projects" aria-labelledby="projects-h">
+      <div class="sec-heading">
+        <div class="sec-eyebrow">01 / PRODUCTION &amp; RESEARCH REPOSITORIES</div>
+        <h2 id="projects-h">Featured Systems</h2>
+        <p>Real-world machine learning architectures engineered for high-throughput, low-latency resilience.</p>
       </div>
 
-    </div>
-  </section>
+      <div class="project-list">
 
-  <!-- AGENTS / PROJECTS -->
-  <section id="agents">
-    <div class="sec-head reveal">
-      <div class="num">01 / DEPLOYED AGENTS</div>
-      <h2>Things I've shipped</h2>
-      <p>Each one starts from the same question: what should this system notice, and what should it do next?</p>
-    </div>
+        <!-- Project 1: Sentinel -->
+        <article class="project-card">
+          <div class="p-head">
+            <h3>Sentinel <span class="p-badge">Published at ICTTI 2026</span></h3>
+            <div class="p-links">
+              <a href="https://github.com/Debddj/Sentinel" target="_blank" rel="noopener">Code Repository →</a>
+            </div>
+          </div>
+          <p class="p-desc">
+            A full-stack ML model observability platform. Four drift-detection engines (Population Stability Index, Kolmogorov-Smirnov, CUSUM, and Isolation Forest) run asynchronously through Celery and Redis to detect model performance degradation before it impacts production.
+          </p>
+          <div class="p-result">
+            <b>Key Engineering:</b> Asynchronous batch &amp; stream evaluation, sub-5ms anomaly alerts, WebSockets real-time push, JWT security, and production React analytics dashboard.
+          </div>
+          <div class="p-stack">
+            <span class="stack-tag">FastAPI</span>
+            <span class="stack-tag">PostgreSQL</span>
+            <span class="stack-tag">Celery</span>
+            <span class="stack-tag">Redis</span>
+            <span class="stack-tag">WebSockets</span>
+            <span class="stack-tag">React</span>
+            <span class="stack-tag">TypeScript</span>
+          </div>
+        </article>
 
-    <div class="agents-grid">
+        <!-- Project 2: Smart Manufacturing ML-MAS -->
+        <article class="project-card">
+          <div class="p-head">
+            <h3>Smart Manufacturing ML-MAS</h3>
+            <div class="p-links">
+              <a href="https://github.com/Debddj/smart-manufacturing-ml-mas" target="_blank" rel="noopener">Code Repository →</a>
+            </div>
+          </div>
+          <p class="p-desc">
+            Multi-agent reinforcement learning for Industry 4.0 supply-chain optimization across a multi-warehouse architecture, coordinating autonomous dispatch and stock replenishment under demand shocks.
+          </p>
+          <div class="p-result">
+            <b>Empirical Results:</b> <b>36% cost reduction</b>, <b>99.7% order fill rate</b> on 913K records, and a <b>0.998 / 1.000 resilience score</b> under stochastic disruption scenarios.
+          </div>
+          <div class="p-stack">
+            <span class="stack-tag">Reinforcement Learning</span>
+            <span class="stack-tag">Multi-Agent Systems</span>
+            <span class="stack-tag">FastAPI</span>
+            <span class="stack-tag">React</span>
+            <span class="stack-tag">MessageBus Event System</span>
+          </div>
+        </article>
 
-      <!-- FEATURED: AEGIS -->
-      <div class="card featured reveal">
-        <div class="featured-top">
+        <!-- Project 3: LiverInsight CDSS -->
+        <article class="project-card">
+          <div class="p-head">
+            <h3>LiverInsight CDSS — Clinical Decision Support</h3>
+            <div class="p-links">
+              <a href="https://github.com/Debddj/LiverInsight-CDSS-Clinical-Decision-Support-System-" target="_blank" rel="noopener">Code Repository →</a>
+            </div>
+          </div>
+          <p class="p-desc">
+            A clinical decision-support system for hepatic risk assessment, built with SHAP explainability so that physicians can audit exact physiological contributions behind each model inference.
+          </p>
+          <div class="p-result">
+            <b>Diagnostic Performance:</b> XGBoost architecture validated with <b>91% recall</b>, <b>84% precision</b>, and <b>0.92 ROC-AUC</b> with localized SHAP waterfall graphs.
+          </div>
+          <div class="p-stack">
+            <span class="stack-tag">XGBoost</span>
+            <span class="stack-tag">Explainable AI (SHAP)</span>
+            <span class="stack-tag">FastAPI</span>
+            <span class="stack-tag">React 18</span>
+            <span class="stack-tag">TypeScript</span>
+          </div>
+        </article>
+
+        <!-- Project 4: Aegis -->
+        <article class="project-card">
+          <div class="p-head">
+            <h3>Aegis — Autonomous MLOps Swarm</h3>
+            <div class="p-links">
+              <a href="https://aegis-dun-rho.vercel.app" target="_blank" rel="noopener">Live Demo ↗</a>
+              <a href="https://github.com/Debddj/Aegis" target="_blank" rel="noopener">Code Repository →</a>
+            </div>
+          </div>
+          <p class="p-desc">
+            An autonomous multi-agent MLOps framework. Four specialized agents (<b>Sentry</b>, <b>Sleuth</b>, <b>Medic</b>, and <b>Scribe</b>) detect, diagnose, remediate, and document ML incidents with ChromaDB persistent memory and a risk-tiered human approval gate.
+          </p>
+          <div class="p-result">
+            <b>Testing Rig:</b> Features a failure-injection simulator to stress-test agent recovery under sudden synthetic drift and catastrophic server drops.
+          </div>
+          <div class="p-stack">
+            <span class="stack-tag">Google ADK</span>
+            <span class="stack-tag">Gemini 2.5 Flash</span>
+            <span class="stack-tag">ChromaDB</span>
+            <span class="stack-tag">FastAPI</span>
+            <span class="stack-tag">React</span>
+            <span class="stack-tag">Docker</span>
+          </div>
+        </article>
+
+      </div>
+
+      <!-- More Projects -->
+      <h3 class="subhead">Additional Explorations &amp; Hackathon Deployments</h3>
+      <div class="compact-grid">
+
+        <div class="compact-card">
           <div>
-            <span class="sub">FLAGSHIP · CAPSTONE PROJECT</span>
-            <h3>Aegis</h3>
+            <div class="p-head">
+              <h4>Stadium Copilot</h4>
+              <div class="p-links">
+                <a href="https://stadium-copilot-ruby.vercel.app" target="_blank" rel="noopener">Demo ↗</a>
+                <a href="https://github.com/Debddj/stadium-copilot" target="_blank" rel="noopener">Code →</a>
+              </div>
+            </div>
+            <p class="c-desc">
+              GenAI operations layer for FIFA World Cup 2026. Features a 12-language grounded fan chatbot, crowd advisories, accessibility rewriter, and lowest-carbon routing. Built for Google PromptWars.
+            </p>
           </div>
-          <span class="pill pill-live">● Live demo</span>
+          <p class="c-meta">FastAPI · Gemini · Vercel</p>
         </div>
-        <p class="desc">An autonomous multi-agent system for ML infrastructure reliability. When a production model starts failing, a coordinated pipeline of four agents detects, diagnoses, and remediates the incident — then writes it up, with a live failure-injection harness to prove it works.</p>
-        <div class="stage-flow">
-          <div class="stage"><div class="k">AGENT 01</div><div class="n">Sentry</div><div class="d">watches for the incident</div></div>
-          <div class="stage-arrow">→</div>
-          <div class="stage"><div class="k">AGENT 02</div><div class="n">Sleuth</div><div class="d">traces the root cause</div></div>
-          <div class="stage-arrow">→</div>
-          <div class="stage"><div class="k">AGENT 03</div><div class="n">Medic</div><div class="d">applies the remediation</div></div>
-          <div class="stage-arrow">→</div>
-          <div class="stage"><div class="k">AGENT 04</div><div class="n">Scribe</div><div class="d">writes the postmortem</div></div>
+
+        <div class="compact-card">
+          <div>
+            <div class="p-head">
+              <h4>EcoTwin</h4>
+            </div>
+            <p class="c-desc">
+              AI carbon-footprint sandbox. Gemini 2.5 Flash transforms receipt text into structured transactions with kgCO2e estimates; an AI coach streams over SSE with what-if simulations. Built for Google PromptWars.
+            </p>
+          </div>
+          <p class="c-meta">Next.js 14 · TypeScript · GitHub Actions · Vercel</p>
         </div>
-        <div class="stack">
-          <span>Google ADK</span><span>Gemini</span><span>FastAPI</span><span>React / TS</span><span>ChromaDB</span><span>gRPC</span><span>Docker</span>
+
+        <div class="compact-card">
+          <div>
+            <div class="p-head">
+              <h4>MagnoGlove Pro</h4>
+              <div class="p-links">
+                <a href="https://debddj.github.io/MagnoGlove-Demo/" target="_blank" rel="noopener">Demo ↗</a>
+                <a href="https://github.com/Debddj/MagnoGlove-Demo" target="_blank" rel="noopener">Code →</a>
+              </div>
+            </div>
+            <p class="c-desc">
+              Browser-native AR hand tracking with electromagnetic physics simulation. Detects 21 landmarks per hand via GPU-accelerated MediaPipe WASM and WebGL 2.0 rendering. Zero install.
+            </p>
+          </div>
+          <p class="c-meta">MediaPipe WASM · WebGL 2.0 · JavaScript</p>
         </div>
-        <div class="card-links">
-          <a href="https://aegis-dun-rho.vercel.app" target="_blank" rel="noopener">↗ LIVE DEMO</a>
-          <a href="https://github.com/Debddj/Aegis" target="_blank" rel="noopener">↗ REPOSITORY</a>
+
+        <div class="compact-card">
+          <div>
+            <div class="p-head">
+              <h4>AGI MVP (Laptop-Built) <span class="p-badge dev">In development</span></h4>
+              <div class="p-links">
+                <a href="https://github.com/Debddj/agi-mvp-laptop" target="_blank" rel="noopener">Code →</a>
+              </div>
+            </div>
+            <p class="c-desc">
+              A compact transformer language model written from scratch and trained on consumer hardware, featuring an autonomous plan, act, and critique cycle.
+            </p>
+          </div>
+          <p class="c-meta">PyTorch · Transformer Architecture · Agentic Loop</p>
         </div>
-      </div>
 
-      <!-- Sentinel -->
-      <div class="card reveal">
-        <div class="card-top"><h3>Sentinel</h3><span class="pill pill-active">Active</span></div>
-        <p class="desc">A production ML observability platform. Runs PSI, KS, CUSUM and Isolation Forest engines against live traffic to catch data drift, concept drift and prediction anomalies, with async processing and real-time alerting.</p>
-        <div class="stack"><span>Python</span><span>Celery / Redis</span><span>WebSockets</span><span>JWT Auth</span></div>
-        <div class="card-links"><a href="https://github.com/Debddj/Sentinel" target="_blank" rel="noopener">↗ REPOSITORY</a></div>
-      </div>
-
-      <!-- Sanctum -->
-      <div class="card reveal">
-        <div class="card-top"><h3>Sanctum</h3><span class="pill pill-wip">Building</span></div>
-        <p class="desc">A real-time AR VFX engine that turns bare-hand gestures into cinematic visual effects — custom CUDA kernels feeding a TensorRT inference pipeline, rendered live through Three.js.</p>
-        <div class="stack"><span>MediaPipe</span><span>PyTorch</span><span>CUDA</span><span>TensorRT</span><span>Three.js</span></div>
-        <div class="card-links"><a href="https://github.com/Debddj/Sanctum" target="_blank" rel="noopener">↗ REPOSITORY</a></div>
-      </div>
-
-      <!-- Stadium Copilot -->
-      <div class="card reveal">
-        <div class="card-top"><h3>Stadium Copilot</h3><span class="pill pill-live">● Live demo</span></div>
-        <p class="desc">A GenAI operations layer built for FIFA World Cup 2026 — a 12-language grounded fan assistant, real-time crowd intelligence, an accessibility simplifier, and lowest-carbon navigation routing, all on one interactive map.</p>
-        <div class="stack"><span>Gemini</span><span>Maps</span><span>Multilingual RAG</span></div>
-        <div class="card-links">
-          <a href="https://stadium-copilot-ruby.vercel.app" target="_blank" rel="noopener">↗ LIVE DEMO</a>
-          <a href="https://github.com/Debddj/stadium-copilot" target="_blank" rel="noopener">↗ REPO</a>
+        <div class="compact-card full-span">
+          <div>
+            <div class="p-head">
+              <h4>Project Jarvis <span class="p-badge dev">In development</span></h4>
+              <div class="p-links">
+                <a href="https://github.com/Debddj/project-jarvis" target="_blank" rel="noopener">Code →</a>
+              </div>
+            </div>
+            <p class="c-desc">
+              Real-time voice-enabled multimodal AI assistant with heads-up-display telemetry and tool orchestration powered by Gemini.
+            </p>
+          </div>
+          <p class="c-meta">Gemini Multimodal · WebSockets · Real-time Audio · HUD Interface</p>
         </div>
+
+      </div>
+    </section>
+
+    <!-- ===== RESEARCH & RECOGNITION ===== -->
+    <section id="research" aria-labelledby="research-h">
+      <div class="sec-heading">
+        <div class="sec-eyebrow">02 / PEER-REVIEWED &amp; NATIONAL AWARDS</div>
+        <h2 id="research-h">Research &amp; Recognition</h2>
+        <p>Published literature, competitive hackathons, and technical distinctions.</p>
       </div>
 
-      <!-- ChronoSpatial Engine -->
-      <div class="card reveal">
-        <div class="card-top"><h3>ChronoSpatial Engine</h3><span class="pill pill-active">Active</span></div>
-        <p class="desc">A real-time telemetry engine that scores risk frame-by-frame over a live video feed, streaming results over WebSockets through a CNN–ANN hybrid model.</p>
-        <div class="stack"><span>FastAPI</span><span>OpenCV</span><span>MobileNetV3</span><span>ONNX</span></div>
-        <div class="card-links"><a href="https://github.com/Debddj/ChronoSpatial-Engine" target="_blank" rel="noopener">↗ REPOSITORY</a></div>
-      </div>
-
-      <!-- Aura Pitch -->
-      <div class="card reveal">
-        <div class="card-top"><h3>Aura Pitch 2026</h3><span class="pill pill-wip">Building</span></div>
-        <p class="desc">Real-time football tactical intelligence powered by multi-agent reinforcement learning — simulated match telemetry streamed through a gRPC pipeline and rendered as live spatial insight on a 3D pitch.</p>
-        <div class="stack"><span>Multi-Agent RL</span><span>FastAPI / gRPC</span><span>Three.js</span></div>
-        <div class="card-links"><a href="https://github.com/Debddj/Aura-Pitch-2026" target="_blank" rel="noopener">↗ REPOSITORY</a></div>
-      </div>
-
-      <!-- EcoTwin -->
-      <div class="card reveal">
-        <div class="card-top"><h3>EcoTwin</h3><span class="pill pill-wip">Hackathon</span></div>
-        <p class="desc">Turns data you already have — a bank statement, a receipt photo — into a living carbon-footprint "twin" that visibly thrives or wilts with your trend, plus a What-If simulator for future decisions.</p>
-        <div class="stack"><span>Next.js 14</span><span>Gemini</span><span>Vercel</span></div>
-        <div class="card-links"><a href="https://github.com/Debddj/EcoTwin" target="_blank" rel="noopener">↗ REPOSITORY</a></div>
-      </div>
-
-      <!-- LiverInsight CDSS -->
-      <div class="card reveal">
-        <div class="card-top"><h3>LiverInsight CDSS</h3><span class="pill pill-active">91% recall</span></div>
-        <p class="desc">A Clinical Decision Support System for liver disease risk — an XGBoost model at 91% recall / 0.92 AUC, made interpretable with SHAP explanations and confidence scores clinicians can actually act on.</p>
-        <div class="stack"><span>XGBoost</span><span>SHAP</span><span>FastAPI</span><span>React 18</span></div>
-        <div class="card-links"><a href="https://github.com/Debddj/LiverInsight-CDSS-Clinical-Decision-Support-System-" target="_blank" rel="noopener">↗ REPOSITORY</a></div>
-      </div>
-
-      <!-- MagnoGlove -->
-      <div class="card reveal">
-        <div class="card-top"><h3>MagnoGlove Pro</h3><span class="pill pill-live">● Live demo</span></div>
-        <p class="desc">Browser-native AR hand tracking with a real electromagnetic-physics simulation — dual-hand, 21-landmark tracking, zero install, running entirely client-side over WebGL.</p>
-        <div class="stack"><span>MediaPipe</span><span>Three.js</span><span>Cannon-es</span><span>WebGL 2.0</span></div>
-        <div class="card-links">
-          <a href="https://debddj.github.io/MagnoGlove-Demo/" target="_blank" rel="noopener">↗ LIVE DEMO</a>
-          <a href="https://github.com/Debddj/MagnoGlove-Demo" target="_blank" rel="noopener">↗ REPO</a>
+      <div class="timeline">
+        <div class="t-row">
+          <span class="t-when">2026</span>
+          <div class="t-content">
+            <p class="t-title">ICTTI 2026 — International Conference on Transdisciplinary Technology &amp; Innovation</p>
+            <p class="t-sub">Noida International University (NIU), Greater Noida</p>
+            <p class="t-note">
+              Paper accepted and presented as author: <b>&ldquo;Sentinel: A Production-Grade Machine Learning Observability and Telemetry Platform.&rdquo;</b> Received official presenter's certificate.
+            </p>
+          </div>
         </div>
-      </div>
-    </div>
 
-    <div class="lab-strip reveal">
-      <div class="cap">Also running in the lab</div>
-      <div class="lab-list">
-        <a href="https://github.com/Debddj/agi-mvp-laptop" target="_blank" rel="noopener">→ AGI MVP (Laptop-Built) <span class="mut">— from-scratch tiny transformer + agentic plan/act/critique loop</span></a>
-        <a href="https://github.com/Debddj/devpulse-mcp" target="_blank" rel="noopener">→ DevPulse MCP <span class="mut">— feeds live project metrics to your AI assistant</span></a>
-        <a href="https://github.com/Debddj/project-jarvis" target="_blank" rel="noopener">→ Project J.A.R.V.I.S. <span class="mut">— voice assistant with an Iron-Man HUD</span></a>
-      </div>
-    </div>
-  </section>
+        <div class="t-row">
+          <span class="t-when">2026</span>
+          <div class="t-content">
+            <p class="t-title">Smart India Hackathon (SIH 2026) — National Grand Finale Round</p>
+            <p class="t-sub">Ministry of Education, Govt. of India</p>
+            <p class="t-note">
+              Selected for national round for <b>Pramaan</b>, a Legal Metrology label compliance scanner addressing problem statement SIH26034 using computer vision and multimodal validation.
+            </p>
+          </div>
+        </div>
 
-  <!-- CAPABILITY REGISTRY -->
-  <section id="stack">
-    <div class="sec-head reveal">
-      <div class="num">02 / CAPABILITY REGISTRY</div>
-      <h2>What's under the hood</h2>
-      <p>The tools each agent above actually runs on.</p>
-    </div>
-    <div class="reveal">
-      <table class="registry">
-        <tr><td class="k">Agentic Systems</td><td class="v">Google ADK · Gemini · LangChain · multi-agent orchestration</td></tr>
-        <tr><td class="k">ML / Deep Learning</td><td class="v">PyTorch · TensorFlow · scikit-learn · XGBoost · Hugging Face</td></tr>
-        <tr><td class="k">Computer Vision</td><td class="v">OpenCV · MediaPipe · CUDA · TensorRT · ONNX</td></tr>
-        <tr><td class="k">Reinforcement Learning</td><td class="v">DQN · Q-Learning · multi-agent RL</td></tr>
-        <tr><td class="k">Backend / Real-time</td><td class="v">FastAPI · WebSockets · gRPC · Docker · Celery / Redis</td></tr>
-        <tr><td class="k">Frontend / Visualization</td><td class="v">React · TypeScript · Three.js · Next.js</td></tr>
-      </table>
-    </div>
-  </section>
+        <div class="t-row">
+          <span class="t-when">Jul 2026</span>
+          <div class="t-content">
+            <p class="t-title">Google x Kaggle 5-Day AI Agents Intensive</p>
+            <p class="t-sub">Google DeepMind / Kaggle Credential</p>
+            <p class="t-note">
+              Completed advanced curriculum on multi-agent collaboration, tool grounding, and cyclic agent architectures; earned verified badge.
+            </p>
+          </div>
+        </div>
 
-  <!-- CONNECT -->
-  <section id="connect">
-    <div class="sec-head reveal">
-      <div class="num">03 / CONNECT</div>
-      <h2>Open a channel</h2>
-      <p>Best reached where the code already lives.</p>
-    </div>
-    <div class="connect-grid reveal">
-      <div class="terminal">
-        <div class="bar"><span></span><span></span><span></span></div>
-        <div class="body">
-          <p class="ln"><span class="p">$</span> connect --with debnil</p>
-          <p class="ln out">github &nbsp;&nbsp;: github.com/Debddj</p>
-          <p class="ln out">linkedin : linkedin.com/in/debnil-dey</p>
-          <p class="ln out">status &nbsp;&nbsp;: open to interesting problems</p>
+        <div class="t-row">
+          <span class="t-when">May 2026 – Present</span>
+          <div class="t-content">
+            <p class="t-title">GirlScript Summer of Code (GSSoC) 2026</p>
+            <p class="t-sub">National Open-Source Program</p>
+            <p class="t-note">
+              Active open-source contributor across high-impact repositories aligned with Python, React, FastAPI, and AI/ML model inference.
+            </p>
+          </div>
+        </div>
+
+        <div class="t-row">
+          <span class="t-when historic">2019</span>
+          <div class="t-content">
+            <p class="t-title">SIP Abacus Grandmaster</p>
+            <p class="t-sub">State &amp; National Distinction</p>
+            <p class="t-note">
+              Awarded Grandmaster status in mental arithmetic, rapid numerical calculation, and algorithmized computation.
+            </p>
+          </div>
         </div>
       </div>
-      <div class="connect-actions">
-        <a class="btn btn-solid" href="https://github.com/Debddj" target="_blank" rel="noopener">→ GITHUB</a>
-        <a class="btn btn-ghost" href="https://www.linkedin.com/in/debnil-dey-359a25393/" target="_blank" rel="noopener">→ LINKEDIN</a>
-        <p class="connect-note">Currently in progress: a from-scratch agentic LLM (AGI MVP) and a personal J.A.R.V.I.S.-style assistant.</p>
+    </section>
+
+    <!-- ===== EXPERIENCE ===== -->
+    <section id="experience" aria-labelledby="experience-h">
+      <div class="sec-heading">
+        <div class="sec-eyebrow">03 / INDUSTRY &amp; RESEARCH ROLES</div>
+        <h2 id="experience-h">Experience</h2>
+        <p>Applied research, open-source engineering, and institutional fellowships.</p>
       </div>
-    </div>
-  </section>
 
-</main>
+      <div class="timeline">
+        <div class="t-row">
+          <span class="t-when">Dec 2025 – Jul 2026</span>
+          <div class="t-content">
+            <p class="t-title">Research Intern</p>
+            <p class="t-sub">IEDC, Dept. of CSE (AI) and CSE (AI &amp; ML), IEM Kolkata</p>
+            <p class="t-note">
+              Conducting experimental research on edge machine learning, telemetry ingestion systems, and intelligent multi-agent orchestration under faculty guidance.
+            </p>
+          </div>
+        </div>
 
-<footer>
-  <div class="wrap">
-    <span>© 2026 DEBNIL DEY — BUILT WITH HUMAN CRAFT &amp; AGENTIC PIPELINES</span>
-    <span>KOLKATA, INDIA</span>
-  </div>
-</footer>
+        <div class="t-row">
+          <span class="t-when">May 2026 – Present</span>
+          <div class="t-content">
+            <p class="t-title">Open-Source Contributor</p>
+            <p class="t-sub">GirlScript Summer of Code (GSSoC) 2026, Online</p>
+            <p class="t-note">
+              Writing production bug fixes, performance tests, and utility modules for developer tools built in Python, FastAPI, and React.
+            </p>
+          </div>
+        </div>
 
+        <div class="t-row">
+          <span class="t-when">Nov 2025 – Present</span>
+          <div class="t-content">
+            <p class="t-title">Member</p>
+            <p class="t-sub">IETE Student Forum, UEM Kolkata</p>
+            <p class="t-note">
+              Engaging in technical symposiums, peer paper reviews, and applied hardware-software integration workshops.
+            </p>
+          </div>
+        </div>
+
+        <div class="t-row">
+          <span class="t-when">Jan 2025 – Jun 2025</span>
+          <div class="t-content">
+            <p class="t-title">Entrepreneurship Program Fellow</p>
+            <p class="t-sub">Wadhwani Foundation, Kolkata</p>
+            <p class="t-note">
+              Completed intensive cohort on technology venture commercialization, product-market fit, and deploying scalable software solutions.
+            </p>
+          </div>
+        </div>
+
+        <div class="t-row">
+          <span class="t-when">Sep 2024 – Present</span>
+          <div class="t-content">
+            <p class="t-title">Active Member</p>
+            <p class="t-sub">Google Developers Group (GDG), Kolkata</p>
+            <p class="t-note">
+              Active contributor to developer ecosystem events covering Cloud, Vertex AI, TensorFlow, and Web engineering.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SKILLS ===== -->
+    <section id="skills" aria-labelledby="skills-h">
+      <div class="sec-heading">
+        <div class="sec-eyebrow">04 / TECHNICAL TOOLING</div>
+        <h2 id="skills-h">Skills &amp; Competencies</h2>
+        <p>Categorized technical capabilities honed across production repositories and academic research.</p>
+      </div>
+
+      <div class="skills-matrix">
+        <div class="skill-row">
+          <span class="skill-cat">Languages</span>
+          <span class="skill-items">Python, JavaScript, TypeScript, Java, C, SQL</span>
+        </div>
+        <div class="skill-row">
+          <span class="skill-cat">AI &amp; Machine Learning</span>
+          <span class="skill-items">PyTorch, TensorFlow, scikit-learn, XGBoost, Hugging Face, LangChain, OpenCV, Reinforcement Learning, SHAP, CUDA (in progress)</span>
+        </div>
+        <div class="skill-row">
+          <span class="skill-cat">Backend &amp; Data Infra</span>
+          <span class="skill-items">FastAPI, Celery, Redis, PostgreSQL, SQLAlchemy, WebSockets, ChromaDB</span>
+        </div>
+        <div class="skill-row">
+          <span class="skill-cat">Frontend &amp; UI</span>
+          <span class="skill-items">HTML5, React, Next.js, TypeScript, Three.js &amp; WebGL, Tailwind CSS</span>
+        </div>
+        <div class="skill-row">
+          <span class="skill-cat">Cloud &amp; DevOps</span>
+          <span class="skill-items">Google Cloud Platform, Docker, GitHub Actions (CI/CD), Vercel, Git &amp; GitHub</span>
+        </div>
+        <div class="skill-row">
+          <span class="skill-cat">Agents &amp; Specialized Tooling</span>
+          <span class="skill-items">Multi-Agent Systems, Google ADK, Gemini API, ONNX, MediaPipe</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== EDUCATION & CERTIFICATIONS ===== -->
+    <section id="education" aria-labelledby="education-h">
+      <div class="sec-heading">
+        <div class="sec-eyebrow">05 / ACADEMIC BACKGROUND</div>
+        <h2 id="education-h">Education &amp; Certifications</h2>
+        <p>Formal degree curriculum and certified continuing education.</p>
+      </div>
+
+      <div class="timeline">
+        <div class="t-row">
+          <span class="t-when">Jul 2024 – Jul 2028</span>
+          <div class="t-content">
+            <p class="t-title">B.Tech, Computer Science and Engineering (Artificial Intelligence)</p>
+            <p class="t-sub">Institute of Engineering &amp; Management (IEM), Kolkata</p>
+            <p class="t-note">
+              Current Cumulative Grade Point Average: <b>9.0 / 10.0</b>. Rigorous coursework in algorithms, operating systems, probability &amp; statistics, linear algebra, and deep learning architectures.
+            </p>
+          </div>
+        </div>
+
+        <div class="t-row">
+          <span class="t-when">May 2022 – Apr 2024</span>
+          <div class="t-content">
+            <p class="t-title">CBSE Higher Secondary (Class XI &amp; XII)</p>
+            <p class="t-sub">Delhi Public School, Ruby Park, Kolkata</p>
+            <p class="t-note">
+              Mathematics and Computer Science with Physics &amp; Chemistry. Secured <b>81%</b>.
+            </p>
+          </div>
+        </div>
+
+        <div class="t-row">
+          <span class="t-when historic">Apr 2010 – Apr 2022</span>
+          <div class="t-content">
+            <p class="t-title">ICSE (Class X)</p>
+            <p class="t-sub">M. P. Birla Foundation Higher Secondary School, Kolkata</p>
+            <p class="t-note">
+              Academic distinction with <b>93%</b> aggregate.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="subhead">Verified Industry Certifications</h3>
+      <div class="certs-list">
+        <div class="cert-item">
+          <span>Algorithmic Toolbox</span>
+          <span class="cert-issuer">University of California San Diego · Coursera</span>
+        </div>
+        <div class="cert-item">
+          <span>Modern Data Warehouse Analytics in Microsoft Azure</span>
+          <span class="cert-issuer">Microsoft · Coursera</span>
+        </div>
+        <div class="cert-item">
+          <span>Cyber Security Fundamentals</span>
+          <span class="cert-issuer">University of London · Coursera</span>
+        </div>
+        <div class="cert-item">
+          <span>Foundations: Data, Data, Everywhere</span>
+          <span class="cert-issuer">Google · Coursera</span>
+        </div>
+        <div class="cert-item">
+          <span>Principles of Management</span>
+          <span class="cert-issuer">Verified Credential</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CONTACT & PLACEMENT ===== -->
+    <section id="contact" aria-labelledby="contact-h">
+      <div class="sec-heading">
+        <div class="sec-eyebrow">06 / RECRUITER &amp; COLLABORATION PORTAL</div>
+        <h2 id="contact-h">Contact &amp; Placement Inquiries</h2>
+        <p>I am open to software engineering internships, AI research fellowships, and full-time discussions.</p>
+      </div>
+
+      <div class="contact-box">
+        <p class="contact-intro">
+          Whether you are an engineering hiring manager at an MNC, a research scientist, or a team lead seeking a high-agency engineer who ships end-to-end ML systems, my inbox is open.
+        </p>
+
+        <div class="contact-channels">
+          <div class="channel-card">
+            <span class="channel-label">Direct Email (Primary)</span>
+            <a class="channel-val" href="mailto:debddj24@gmail.com">debddj24@gmail.com</a>
+          </div>
+          <div class="channel-card">
+            <span class="channel-label">LinkedIn Profile</span>
+            <a class="channel-val" href="https://www.linkedin.com/in/debnil-dey-359a25393/" target="_blank" rel="noopener">linkedin.com/in/debnil-dey-359a25393</a>
+          </div>
+          <div class="channel-card">
+            <span class="channel-label">GitHub Source Code</span>
+            <a class="channel-val" href="https://github.com/Debddj" target="_blank" rel="noopener">github.com/Debddj</a>
+          </div>
+          <div class="channel-card">
+            <span class="channel-label">Curriculum Vitae</span>
+            <a class="channel-val" href="assets/Debnil_Dey_CV.pdf" download>Debnil_Dey_CV.pdf (Download)</a>
+          </div>
+        </div>
+
+        <div class="recruiter-note">
+          <b>Notice for Recruiters:</b> Available for technical interviews, coding rounds, and system design evaluations. Flexible regarding hybrid or on-site arrangements across India (Bengaluru, Hyderabad, NCR, Pune) as well as global remote opportunities.
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="page">
+      <p>&copy; 2026 Debnil Dey · B.Tech CSE (AI), IEM Kolkata. Built with agentic precision.</p>
+      <p>Kolkata, West Bengal, India</p>
+    </footer>
+
+  </main>
+</div>
+
+<!-- Interactive Runtime Script -->
 <script>
-  // live IST clock
-  function tick(){
-    const el = document.getElementById('clock');
-    const now = new Date();
-    const ist = new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }));
-    const hh = String(ist.getHours()).padStart(2,'0');
-    const mm = String(ist.getMinutes()).padStart(2,'0');
-    const ss = String(ist.getSeconds()).padStart(2,'0');
-    if(el) el.textContent = `IST ${hh}:${mm}:${ss}`;
-  }
-  setInterval(tick, 1000); tick();
-
-  // session uptime
-  const start = Date.now();
-  function upt(){
-    const el = document.getElementById('uptime');
-    const s = Math.floor((Date.now()-start)/1000);
-    const hh = String(Math.floor(s/3600)).padStart(2,'0');
-    const mm = String(Math.floor((s%3600)/60)).padStart(2,'0');
-    const ss = String(s%60).padStart(2,'0');
-    if(el) el.textContent = `SESSION ${hh}:${mm}:${ss}`;
-  }
-  setInterval(upt, 1000); upt();
-
-  // photo mode switcher
-  function switchMode(mode) {
-    const vp = document.getElementById('photoViewport');
-    const imgH = document.getElementById('imgHuman');
-    const imgA = document.getElementById('imgAvatar');
-    const btnH = document.getElementById('btnHuman');
-    const btnA = document.getElementById('btnAvatar');
-    const cap = document.getElementById('captionText');
+  // 1. Photo / Avatar Switcher
+  function setPhotoView(mode) {
+    const imgHuman = document.getElementById('imgHuman');
+    const imgAvatar = document.getElementById('imgAvatar');
+    const btnHuman = document.getElementById('btnHuman');
+    const btnAvatar = document.getElementById('btnAvatar');
+    const caption = document.getElementById('captionText');
     const badge = document.getElementById('modeBadge');
 
-    if(mode === 'human') {
-      imgH.classList.remove('hidden');
-      imgA.classList.add('hidden');
-      vp.className = 'photo-viewport human-active';
-      btnH.className = 'mode-btn active-human';
-      btnA.className = 'mode-btn';
-      cap.textContent = '⚡ Debnil Dey — Kolkata, India';
+    if (mode === 'avatar') {
+      imgHuman.classList.add('hidden');
+      imgAvatar.classList.remove('hidden');
+      btnHuman.className = 'photo-btn';
+      btnAvatar.className = 'photo-btn active-avatar';
+      caption.textContent = 'Debnil Dey · AI Agent Model';
+      badge.textContent = 'AGENTIC RUNTIME';
+      badge.style.color = 'var(--teal)';
+      badge.style.borderColor = 'rgba(79, 209, 197, 0.4)';
+    } else {
+      imgAvatar.classList.add('hidden');
+      imgHuman.classList.remove('hidden');
+      btnAvatar.className = 'photo-btn';
+      btnHuman.className = 'photo-btn active-human';
+      caption.textContent = 'Debnil Dey · Kolkata';
       badge.textContent = 'HUMAN IN THE LOOP';
       badge.style.color = 'var(--amber)';
-    } else {
-      imgH.classList.add('hidden');
-      imgA.classList.remove('hidden');
-      vp.className = 'photo-viewport avatar-active';
-      btnH.className = 'mode-btn';
-      btnA.className = 'mode-btn active-avatar';
-      cap.textContent = '🤖 Debnil Dey — Cyber AI Engine';
-      badge.textContent = 'AUTONOMOUS ENGINE';
-      badge.style.color = 'var(--teal)';
+      badge.style.borderColor = 'var(--rule)';
     }
   }
 
-  // scroll reveal
-  const io = new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
-  }, { threshold:.12 });
-  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-</script>
+  // 2. Active Section Spy for Navigation
+  (function () {
+    const navLinks = Array.from(document.querySelectorAll('.nav a'));
+    const sections = navLinks
+      .map(a => document.querySelector(a.getAttribute('href')))
+      .filter(Boolean);
 
+    if (!('IntersectionObserver' in window) || !sections.length) return;
+
+    const visibleMap = {};
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        visibleMap[entry.target.id] = entry.isIntersecting;
+      });
+
+      const current = sections.find(sec => visibleMap[sec.id]);
+      if (!current) return;
+
+      navLinks.forEach(a => {
+        const matches = a.getAttribute('href') === '#' + current.id;
+        a.setAttribute('aria-current', matches ? 'true' : 'false');
+      });
+    }, { rootMargin: '-20% 0px -65% 0px', threshold: 0 });
+
+    sections.forEach(s => observer.observe(s));
+    if (navLinks.length) navLinks[0].setAttribute('aria-current', 'true');
+  })();
+
+  // 3. Live IST Clock & Session Uptime
+  (function () {
+    const clockEl = document.getElementById('liveClock');
+    const uptimeEl = document.getElementById('sessionTimer');
+    const startTime = Date.now();
+
+    function update() {
+      // IST Clock
+      const now = new Date();
+      const options = { timeZone: 'Asia/Kolkata', hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' };
+      clockEl.textContent = 'IST ' + now.toLocaleTimeString('en-GB', options);
+
+      // Session Uptime
+      const diffSecs = Math.floor((Date.now() - startTime) / 1000);
+      const hrs = String(Math.floor(diffSecs / 3600)).padStart(2, '0');
+      const mins = String(Math.floor((diffSecs % 3600) / 60)).padStart(2, '0');
+      const secs = String(diffSecs % 60).padStart(2, '0');
+      uptimeEl.textContent = 'SESSION ' + hrs + ':' + mins + ':' + secs;
+    }
+
+    update();
+    setInterval(update, 1000);
+  })();
+</script>
 </body>
 </html>
